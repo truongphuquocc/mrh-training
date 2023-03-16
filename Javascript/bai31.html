@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p id="result"></p>
+    <script>
+        function checkMaxOfThreeNumber(num1, num2, num3) {
+            check = 0;
+            if (num1 > num2) {
+                check = num1
+            } else
+                check = num2
+
+            if (num3 > check) {
+                check = num3
+            }
+            return check
+        }
+        document.querySelector("#result").innerHTML = `max is: ${checkMaxOfThreeNumber(2, 4, 5)}`
+    </script>
+</body>
+
+</html>

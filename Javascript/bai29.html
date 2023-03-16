@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p><input type="text" name="num1"></p>
+    <p><input type="text" name="num2"></p>
+    <p><button id="multiply" onclick="check()">Kết quả</button></p>
+    <p id="result"></p>
+
+    <script>
+        function check() {
+            let num1 = document.querySelector('input[name="num1"]').value
+            let num2 = document.querySelector('input[name="num2"]').value
+
+            let numParse1 = parseInt(num1)
+            let numParse2 = parseInt(num2)
+
+            if (numParse1 >= 50 && numParse1 <= 99 || numParse2 >= 50 && numParse2)
+                document.querySelector("#result").innerHTML = `${num1} or ${num2} is betweent 50 and 99`
+            else
+                document.querySelector("#result").innerHTML = `${num1} or ${num2} not betweent 50 and 99`
+        }
+
+    </script>
+</body>
+
+</html>

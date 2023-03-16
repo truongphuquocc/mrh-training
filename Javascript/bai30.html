@@ -9,11 +9,11 @@
 </head>
 
 <body>
-    <p id="result"></p>
+    <p id="param"></p>
     <script>
-        let string = 'phu quoc';
+        let string = 'CoffeeScript';
 
-        document.querySelector('#result').innerHTML = `String of ${string}: ${string.slice(-3) + string + string.slice(-3)}`;
+        document.querySelector('#param').innerHTML = `new String: ${string.slice(4, 10) === 'Script' ? string.replace('Script', '') : string}`;
     </script>
 </body>
 
