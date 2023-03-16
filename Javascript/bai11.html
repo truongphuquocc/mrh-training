@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <p>C : <input type="text" name="numCelsius"></p>
+    <p id="result"></p>
+    <p><button id="Celsius" onclick="convertCToF()">Kết quả</button></p>
+
+    <p>F: <input type="text" name="numFahrenheit"></p>
+    <p id="resultC"></p>
+    <p><button id="Fahrenheit" onclick="convertFToC()">Kết quả</button></p>
+
+
+    <script>
+
+        function convertFToC() {
+            let temp = document.querySelector('input[name="numFahrenheit"]').value
+
+            document.querySelector("#resultC").innerHTML = `${temp}°F is ${(temp - 32) / 9 * 5} °C`
+        }
+
+        function convertCToF() {
+            let temp = document.querySelector('input[name="numCelsius"]').value
+
+            document.querySelector("#result").innerHTML = `${temp}°C is ${temp / 5 * 9 + 32} °F`
+        }
+
+
+    </script>
+
+</body>
+
+</html>

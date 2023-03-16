@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>Number: <input type="text" name="num1"></p>
+    <p><button id="multiply" onclick="difference()">Kết quả</button></p>
+    <p id="result"></p>
+
+    <script>
+        function difference() {
+            let numCheck = document.querySelector('input[name="num1"]').value
+            let check = false
+
+            if (Math.abs(100 - parseInt(numCheck)) < 20 || 400 - Math.abs(parseInt(numCheck)) < 20)
+                check = true
+            else
+                check = false
+
+            document.querySelector("#result").innerHTML = `${numCheck} is within 20 of 100 or 400: ${check}`
+        }
+    </script>
+</body>
+
+</html>

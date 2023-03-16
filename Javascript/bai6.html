@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p id="result"></p>
+</body>
+<script>
+    let result = document.querySelector('#result')
+
+    let yearCheck = 2024
+
+    function isLeadYear(year) {
+        let date = new Date({ year });
+        return date.getDate() > 28;
+    }
+
+    isLeadYear(yearCheck)
+
+    result.innerHTML = `${yearCheck} is ${isLeadYear(yearCheck) ? '' : 'not'} lead year`;
+
+</script>
+
+</html>

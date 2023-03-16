@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="result"></p>
+</body>
+<script>
+    var result = document.querySelector("#result")
+    
+    let date = new Date
+    console.log(date)
+    let ChristmasDate = new Date(date.getFullYear(),11,25)
+    console.log(ChristmasDate)
+
+    let timeSpace = ChristmasDate - date
+
+    if(timeSpace > 0)
+        ChristmasDate - date
+    else
+        ChristmasDate.setFullYear(ChristmasDate.getFullYear() + 1) - date
+
+    let sumDay = Math.ceil(timeSpace/1000/60/60/24)
+
+    result.innerHTML = sumDay
+
+    console.log(timeSpace)
+</script>
+</html>
