@@ -2,6 +2,8 @@ package com.tpq.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -31,8 +33,6 @@ public class StudentController extends HttpServlet {
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public StudentController() {
-		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -41,10 +41,41 @@ public class StudentController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		String action = request.getParameter("action") != null ? request.getParameter("action") : "none";
 		try {
-			this.showEditForm(request, response);
+			switch (action) {
+			case "new":
+				RequestDispatcher dispatcher = request.getRequestDispatcher("./view/student/create.jsp");
+				dispatcher.forward(request, response);
+				break;
+			case "insert":
+				String name = request.getParameter("name");
+				int age = Integer.parseInt(request.getParameter("age"));
+				String booleanGender = request.getParameter("gender");
+				boolean gender;
+				if(booleanGender.equals("1"))
+					gender = true;
+				else 
+					gender = false;
+
+				StudentDTO newStudent = new StudentDTO(name, age, gender);
+				this.studentService.add(newStudent);
+				response.sendRedirect("student");
+			case "delete":
+				this.deleteStudent(request, response);
+				break;
+			case "edit":
+				this.showEditForm(request, response);
+				break;
+			case "update":
+				this.updateProduct(request, response);
+				break;
+			default:
+				this.getListProduct(request, response);
+				break;
+			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -58,16 +89,44 @@ public class StudentController extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
+	
+	private void getListProduct(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
+		ArrayList<StudentDTO> listStudent = this.studentService.list();
+		System.out.println("name"+listStudent);
+		request.setAttribute("listStudent", listStudent);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("./view/student/Index.jsp");
+		dispatcher.forward(request, response);
+	}
+	
+	private void updateProduct(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
+		int id = Integer.parseInt(request.getParameter("id"));
+		String name = request.getParameter("name");
+		int age = Integer.parseInt(request.getParameter("age"));
+		String booleanGender = request.getParameter("gender");
+		Boolean gender;
+		if(booleanGender.equals("1"))
+			gender = true;
+		else 
+			gender = false;
+		System.out.println("sua di22222");
+		StudentDTO newStudent = new StudentDTO(id, name, age, gender);
+		System.out.println("in4"+newStudent.getAge());
+		this.studentService.update(newStudent);
+		response.sendRedirect("student");
+	}
+	
+	private void deleteStudent(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
+		int id = Integer.parseInt(request.getParameter("id"));
+
+		this.studentService.delete(id);
+		response.sendRedirect("student");
+	}
 
 	private void showEditForm(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, ServletException, IOException {
-		// int id = Integer.parseInt(request.getParameter("id"));
-		System.out.println("11111111111111111"+studentService);
-		
-		StudentDTO existingStudent = this.studentService.get(2);
-		System.out.println("22222222222"+existingStudent);
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("./view/student/Index.jsp");
+		int id = Integer.parseInt(request.getParameter("id"));	
+		StudentDTO existingStudent = this.studentService.get(id);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("./view/student/create.jsp");
 		request.setAttribute("student", existingStudent);
 		dispatcher.forward(request, response);
 	}

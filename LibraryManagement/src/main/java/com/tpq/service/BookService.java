@@ -26,7 +26,7 @@ public class BookService implements CommonService<BookDTO> {
 	}
 
 	@Override
-	public boolean delete(BookDTO data) throws SQLException {
+	public boolean delete(int id) throws SQLException {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -35,6 +35,12 @@ public class BookService implements CommonService<BookDTO> {
 	public BookDTO get(int id) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public int inUsed(int id) throws SQLException {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }
