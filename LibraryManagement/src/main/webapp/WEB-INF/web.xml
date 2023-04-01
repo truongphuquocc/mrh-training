@@ -17,6 +17,14 @@
 		<servlet-name>StudentController</servlet-name>
 		<url-pattern>/student</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>BookController</servlet-name>
+		<servlet-class>com.tpq.controller.BookController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>BookController</servlet-name>
+		<url-pattern>/book</url-pattern>
+	</servlet-mapping>
 	<context-param>
 		<param-name>dbURL</param-name>
 		<param-value>jdbc:mysql://localhost:3306/bookstore</param-value>

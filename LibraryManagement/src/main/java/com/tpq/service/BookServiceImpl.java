@@ -3,44 +3,49 @@ package com.tpq.service;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.tpq.dao.BookDAOImpl;
+import com.tpq.dao.CommonDAO;
 import com.tpq.dto.BookDTO;
 
-public class BookService implements CommonService<BookDTO> {
+public class BookServiceImpl implements CommonService<BookDTO> {
+	private CommonDAO<BookDTO> bookDAO;
+
+	// studentDAO = new StudentDAOImpl();
+
+	public BookServiceImpl() {
+		this.bookDAO = new BookDAOImpl();
+	}
 
 	@Override
 	public ArrayList<BookDTO> list() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		return this.bookDAO.list();
 	}
 
 	@Override
 	public boolean add(BookDTO data) throws SQLException {
-		// TODO Auto-generated method stub
-		return false;
+		return this.bookDAO.add(data);
 	}
 
 	@Override
 	public boolean update(BookDTO data) throws SQLException {
-		// TODO Auto-generated method stub
-		return false;
+		return this.bookDAO.update(data);
 	}
 
 	@Override
 	public boolean delete(int id) throws SQLException {
-		// TODO Auto-generated method stub
-		return false;
+		if(inUsed(id) > 0)
+			return false;
+		return this.bookDAO.delete(id);
 	}
 
 	@Override
 	public BookDTO get(int id) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		return this.bookDAO.get(id);
 	}
 
 	@Override
 	public int inUsed(int id) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.bookDAO.inUsed(id);
 	}
 
 }

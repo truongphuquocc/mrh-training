@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Add Student</title>
+<title>Add book</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -21,7 +21,7 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-<!-- 	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 		<ul class="navbar-nav">
 			<li class="nav-item active"><a class="nav-link" href="#">Students</a>
 			</li>
@@ -30,17 +30,17 @@
 			<li class="nav-item"><a class="nav-link" href="#">Search
 					Borrows</a></li>
 		</ul>
-	</nav> -->
-	 <jsp:include page="../common/header.jsp" />
+	</nav>
+
 	<main>
 		<div class="p-3 mb-2 bg-light text-dark">
 			<div class="container d-flex justify-content-between">
 				<div>
-					<h2>Student management</h2>
+					<h2>Book management</h2>
 				</div>
 				<div>
-					<a class="btn btn-success" href="student?action=new"> <i
-						class="fa-solid fa-plus"></i> Add new student
+					<a class="btn btn-success" href="book?action=new"> <i
+						class="fa-solid fa-plus"></i> Add new book
 					</a>
 				</div>
 			</div>
@@ -50,29 +50,23 @@
 				<thead>
 					<tr>
 						<th scope="col">Name</th>
-						<th scope="col">Age</th>
-						<th scope="col">Gender</th>
+						<th scope="col">TotalPage</th>
+						<th scope="col">Quantity</th>
+						<th scope="col">Type</th>
 						<th scope="col" class="text-center">Actions</th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="student" items="${listStudent}">
+					<c:forEach var="book" items="${listbook}">
 						<tr>
-							<th scope="row"><c:out value="${student.getName()}" /></th>
-							<td><c:out value="${student.getAge()}" /></td>
-							<c:choose>
-								<c:when test="${student.gender == true }">
-									<td>Nam</td>
-								</c:when>
-								<c:otherwise>
-									<td>Nữ</td>
-								</c:otherwise>
-							</c:choose>
-
+							<th scope="row"><c:out value="${book.getName()}" /></th>
+							<td><c:out value="${book.getTotalPage()}" /></td>
+							<td><c:out value="${book.getQuantity()}" /></td>
+							<td><c:out value="${book.getType()}" /></td>
 							<td class="text-center"><a
-								href="student?action=edit&id=<c:out value='${student.studentID}' />"
+								href="book?action=edit&id=<c:out value='${book.getBookID()}' />"
 								class="btn btn-warning"><i class="fa-solid fa-pen"></i></a> <a
-								href="student?action=delete&id=<c:out value='${student.studentID}' />"
+								href="book?action=delete&id=<c:out value='${book.getBookID()}' />"
 								class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a></td>
 						</tr>
 					</c:forEach>

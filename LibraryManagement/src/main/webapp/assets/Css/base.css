@@ -3,7 +3,49 @@
 
 body {
     font-family: 'Poppins', sans-serif;
+    background-color: aliceblue;
 }
+
+.bg-dark {
+    background-color: #282A35!important;
+}
+
+.container {
+    min-width: 1585px!important;
+}
+
+.nav-item {
+    height: 100%!important;
+    display: flex;
+    align-items: center;
+    text-transform:uppercase;
+}
+
+.nav-item:hover {
+    background-color: #000000 !important;
+    color: #ffffff !important;
+}
+
+.navbar {
+    padding: 0;
+}
+
+.nav {
+    height: 45px;
+    padding: 0px;
+    background-color: #282A35;
+}
+
+.active {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    color: #ffffff !important;
+    font-weight: bold;
+    text-transform:uppercase;
+    background-color: #00a65a;
+}
+
 
 .box.box-success {
     border-top-color: #00a65a;

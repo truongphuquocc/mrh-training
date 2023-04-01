@@ -3,7 +3,6 @@ package com.tpq.service;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import org.eclipse.jdt.internal.compiler.batch.Main;
 
 import com.tpq.dao.CommonDAO;
 import com.tpq.dao.StudentDAOImpl;
