@@ -5,7 +5,9 @@ import java.util.Date;
 public class BorrowDTO {
 	public int BorrowID;
 	public int StudentID;
+	public String StudentName;
 	public int BookID;
+	public String BookName;
 	public int Quantity;
 	public Date BorrowDate;
 	/**
@@ -15,30 +17,55 @@ public class BorrowDTO {
 		// TODO Auto-generated constructor stub
 	}
 	/**
+	 * @param borrowID
 	 * @param studentID
+	 * @param studentName
 	 * @param bookID
+	 * @param bookName
 	 * @param quantity
 	 * @param borrowDate
 	 */
-	public BorrowDTO(int studentID, int bookID, int quantity, Date borrowDate) {
+	public BorrowDTO(int borrowID, int studentID, String studentName, int bookID, String bookName, int quantity,
+			Date borrowDate) {
+		super();
+		BorrowID = borrowID;
 		StudentID = studentID;
+		StudentName = studentName;
 		BookID = bookID;
+		BookName = bookName;
 		Quantity = quantity;
 		BorrowDate = borrowDate;
 	}
 	/**
-	 * @param borrowID
 	 * @param studentID
+	 * @param studentName
 	 * @param bookID
+	 * @param bookName
 	 * @param quantity
 	 * @param borrowDate
 	 */
-	public BorrowDTO(int borrowID, int studentID, int bookID, int quantity, Date borrowDate) {
-		BorrowID = borrowID;
+	public BorrowDTO(int studentID, String studentName, int bookID, String bookName, int quantity, Date borrowDate) {
+		super();
 		StudentID = studentID;
+		StudentName = studentName;
 		BookID = bookID;
+		BookName = bookName;
 		Quantity = quantity;
 		BorrowDate = borrowDate;
+	}
+	
+	
+	/**
+	 * @param studentID
+	 * @param bookID
+	 * @param borrowDate
+	 */
+	public BorrowDTO(int studentID, int bookID, Date borrowDate, int quantity) {
+		super();
+		StudentID = studentID;
+		BookID = bookID;
+		BorrowDate = borrowDate;
+		Quantity = quantity;
 	}
 	/**
 	 * @return the borrowID
@@ -65,6 +92,18 @@ public class BorrowDTO {
 		StudentID = studentID;
 	}
 	/**
+	 * @return the studentName
+	 */
+	public String getStudentName() {
+		return StudentName;
+	}
+	/**
+	 * @param studentName the studentName to set
+	 */
+	public void setStudentName(String studentName) {
+		StudentName = studentName;
+	}
+	/**
 	 * @return the bookID
 	 */
 	public int getBookID() {
@@ -75,6 +114,18 @@ public class BorrowDTO {
 	 */
 	public void setBookID(int bookID) {
 		BookID = bookID;
+	}
+	/**
+	 * @return the bookName
+	 */
+	public String getBookName() {
+		return BookName;
+	}
+	/**
+	 * @param bookName the bookName to set
+	 */
+	public void setBookName(String bookName) {
+		BookName = bookName;
 	}
 	/**
 	 * @return the quantity
@@ -100,6 +151,7 @@ public class BorrowDTO {
 	public void setBorrowDate(Date borrowDate) {
 		BorrowDate = borrowDate;
 	}
-	
-	
+
+
+
 }

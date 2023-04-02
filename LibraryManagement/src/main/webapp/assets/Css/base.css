@@ -10,10 +10,6 @@ body {
     background-color: #282A35!important;
 }
 
-.container {
-    min-width: 1585px!important;
-}
-
 .nav-item {
     height: 100%!important;
     display: flex;

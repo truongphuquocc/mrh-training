@@ -21,17 +21,7 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-		<ul class="navbar-nav">
-			<li class="nav-item active"><a class="nav-link" href="#">Students</a>
-			</li>
-			<li class="nav-item"><a class="nav-link" href="#">Books</a></li>
-			<li class="nav-item"><a class="nav-link" href="#">Brrows</a></li>
-			<li class="nav-item"><a class="nav-link" href="#">Search
-					Borrows</a></li>
-		</ul>
-	</nav>
-
+	<jsp:include page="../common/header.jsp" />
 	<main>
 		<div class="p-3 mb-2 bg-light text-dark">
 			<div>
@@ -86,7 +76,7 @@
 					<button type="submit" id="submit" class="btn btn-primary">
 						<i class="fa-solid fa-floppy-disk"></i> Lưu Dữ Liệu
 					</button>
-					<a href="./" class="btn btn-warning"><i
+					<a href="student" class="btn btn-warning"><i
 						class="fa-solid fa-backward"></i>Quay Lại</a>
 					</form>
 
