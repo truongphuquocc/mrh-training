@@ -8,13 +8,19 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+	integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+	crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/assets/Css/base.css">
+	href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/assets/Css/base.css">
 </head>
 <body>
 	<jsp:include page="../common/header.jsp" />
@@ -31,8 +37,8 @@
 						<div class="form-row">
 							<div class="form-group col-2">
 								<div class="datepicker date input-group">
-									<input type="text" placeholder="From day" class="form-control" name="fromday"
-										id="fecha1">
+									<input type="text" placeholder="From day" class="form-control"
+										name="fromday" id="fecha1">
 									<div class="input-group-append">
 										<span class="input-group-text"><i
 											class="fa fa-calendar"></i></span>
@@ -41,24 +47,23 @@
 							</div>
 							<div class="form-group col-2">
 								<div class="datepicker date input-group">
-									<input type="text" placeholder="To day" class="form-control" name="today"
-										id="fecha1">
+									<input type="text" placeholder="To day" class="form-control"
+										name="today" id="fecha1">
 									<div class="input-group-append">
 										<span class="input-group-text"><i
 											class="fa fa-calendar"></i></span>
 									</div>
 								</div>
 							</div>
-							<div class="input-group d-flex col-8">
-
+							<div class="input-group mb-4 d-flex col-8">
 								<input type="text" class="form-control" name="searchvalue"
 									placeholder="Something clever..">
 								<div class="d-block">
-									<button class="btn btn-primary" type="button">
+									<button class="btn btn-primary" type="submit">
 										<i class="fa-solid fa-magnifying-glass"></i> Search
 									</button>
-									<a class="btn btn-success" href="borrow?action=new">
-										<i class="fa-solid fa-plus"></i> Borrow
+									<a class="btn btn-success" href="borrow?action=new"> <i
+										class="fa-solid fa-plus"></i> Borrow
 									</a>
 								</div>
 
@@ -100,22 +105,10 @@
 		integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
 		crossorigin="anonymous"></script>
 	<script
-		src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
+		src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
 	<script
-		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+		src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 	<script type="text/javascript"
 		src="${jakarta.servlet.jsp.PageContext}assets/js/index.js"></script>
-		
-	<script type="text/javascript">
-		$(function() {
-			$(".datepicker").datepicker({
-				language : "es",
-				autoclose : true,
-				format : "dd/mm/yyyy",
-			});
-		});
-	</script>
 </body>
 </html>

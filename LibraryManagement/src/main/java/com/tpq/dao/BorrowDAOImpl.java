@@ -25,25 +25,23 @@ public class BorrowDAOImpl implements BorrowDAO<BorrowDTO> {
 	@Override
 	public ArrayList<BorrowDTO> list(String searchValue, String fromDay, String Today) throws SQLException {
 		ArrayList<BorrowDTO> listProd = new ArrayList<BorrowDTO>();
-		searchValue = "";
-		if(searchValue != "")
+		if (searchValue != "")
 			searchValue = "%" + searchValue + "%";
-		
+
 		String sql = "SELECT br.BorrowID, bo.BookID, bo.Name AS BookName, br.BorrowDate, st.StudentID,\r\n"
-				+ "st.Name AS StudentName, br.Quantity\r\n"
-				+ "FROM borrows AS br\r\n"
+				+ "st.Name AS StudentName, br.Quantity\r\n" + "FROM borrows AS br\r\n"
 				+ "LEFT JOIN books AS bo ON br.BookID = bo.BooKID\r\n"
 				+ "LEFT JOIN students AS st ON br.StudentID = st.StudentID\r\n"
-				+ "WHERE st.Name = ? OR bo.Name = ?";
+				+ "WHERE st.Name LIKE ? OR bo.Name LIKE ?";
 		jdbcConnection = MySqlCon.connectDb();
 		PreparedStatement statement = jdbcConnection.prepareStatement(sql);
-		statement.setString(1,searchValue);
-		statement.setString(2,searchValue);
-		/*	
+		statement.setString(1, "%" + searchValue + "%");
+		statement.setString(2, "%" + searchValue + "%");
+		/*
 		 * statement.setString(4,fromDay); statement.setString(5,Today);
 		 */
-		
-		ResultSet resultSet = statement.executeQuery(sql);
+
+		ResultSet resultSet = statement.executeQuery();
 
 		while (resultSet.next()) {
 			int bookID = resultSet.getInt("BookID");
@@ -73,7 +71,7 @@ public class BorrowDAOImpl implements BorrowDAO<BorrowDTO> {
 		statement.setInt(2, data.getBookID());
 		statement.setDate(3, (java.sql.Date) data.getBorrowDate());
 		statement.setInt(4, data.getQuantity());
-		
+
 		boolean rowInserted = statement.executeUpdate() > 0;
 		statement.close();
 		MySqlCon.disconnect(jdbcConnection);
@@ -84,11 +82,11 @@ public class BorrowDAOImpl implements BorrowDAO<BorrowDTO> {
 	public boolean updateAnount(int id, int amount) throws SQLException {
 		String sql = "UPDATE `bookstore`.`books` SET `Quantity` = `Quantity` - ? WHERE (`BookID` = ?)";
 		jdbcConnection = MySqlCon.connectDb();
-		
+
 		PreparedStatement statement = jdbcConnection.prepareStatement(sql);
 		statement.setInt(1, id);
 		statement.setInt(2, amount);
-		
+
 		boolean rowUpdated = statement.executeUpdate() > 0;
 		statement.close();
 		MySqlCon.disconnect(jdbcConnection);

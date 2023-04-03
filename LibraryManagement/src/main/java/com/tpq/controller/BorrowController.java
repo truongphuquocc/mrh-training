@@ -99,9 +99,11 @@ public class BorrowController extends HttpServlet {
 	private void getList(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, ServletException, IOException {
 		String searchvalue = request.getParameter("searchvalue");
-		searchvalue = "";
 		String fromday = request.getParameter("fromday");
 		String today = request.getParameter("today");
+		System.out.println("searchvalue"+searchvalue);
+		if(searchvalue == null)
+			searchvalue = "";
 		ArrayList<BorrowDTO> listborrow = this.borrowService.list(searchvalue, fromday, today);
 		request.setAttribute("listborrow", listborrow);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("./view/borrow/index.jsp");
