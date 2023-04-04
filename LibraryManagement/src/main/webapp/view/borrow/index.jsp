@@ -33,24 +33,24 @@
 		<div class="container ">
 			<div class="box box-success">
 				<div class="box-body">
-					<form action="borrow?action=none" method="post">
+					<form action="borrow?action=none" method="get">
 						<div class="form-row">
 							<div class="form-group col-2">
 								<div class="datepicker date input-group">
-									<input type="text" placeholder="From day" class="form-control"
+									<input type="text" placeholder="From day" class="form-control cursor-pointer" readonly
 										name="fromday" id="fecha1">
 									<div class="input-group-append">
-										<span class="input-group-text"><i
+										<span class="input-group-text cursor-pointer"><i
 											class="fa fa-calendar"></i></span>
 									</div>
 								</div>
 							</div>
 							<div class="form-group col-2">
 								<div class="datepicker date input-group">
-									<input type="text" placeholder="To day" class="form-control"
-										name="today" id="fecha1">
+									<input type="text" placeholder="To day" class="form-control cursor-pointer" readonly
+										name="today" id="fecha2">
 									<div class="input-group-append">
-										<span class="input-group-text"><i
+										<span class="input-group-text cursor-pointer"><i
 											class="fa fa-calendar"></i></span>
 									</div>
 								</div>

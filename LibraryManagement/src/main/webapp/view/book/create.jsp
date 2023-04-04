@@ -22,7 +22,7 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-	 <jsp:include page="../common/header.jsp" />
+	jsp:include page="../common/header.jsp" />
 	<main>
 		<div class="p-3 mb-2 bg-light text-dark">
 			<div>
@@ -32,7 +32,6 @@
 		<div class="container">
 			<div class="box box-success">
 				<div class="box-body">
-
 					<c:if test="${book != null}">
 						<form action="book?action=update" method="post">
 					</c:if>
@@ -50,7 +49,6 @@
 							id="emailHelp" class="form-text text-danger">Vui lòng
 							nhập...</small>
 					</div>
-
 					<div class="form-group">
 						<label>TotalPage</label> <input type="text" class="form-control"
 							value="<c:out value='${book.getTotalPage()}'/>" id="totalpage"
@@ -69,14 +67,12 @@
 							placeholder="type"> <small id="Email"
 							class="form-text text-danger">Vui lòng nhập...</small>
 					</div>
-
 					<button type="submit" id="submit" class="btn btn-primary">
 						<i class="fa-solid fa-floppy-disk"></i> Lưu Dữ Liệu
 					</button>
 					<a href="book" class="btn btn-warning"><i
 						class="fa-solid fa-backward"></i>Quay Lại</a>
 					</form>
-
 				</div>
 			</div>
 		</div>

@@ -1,66 +1,70 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import
+	url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap')
+	;
 
 body {
-    font-family: 'Poppins', sans-serif;
-    background-color: aliceblue;
+	font-family: 'Poppins', sans-serif;
+	background-color: aliceblue;
 }
 
 .bg-dark {
-    background-color: #282A35!important;
+	background-color: #282A35 !important;
 }
 
 .nav-item {
-    height: 100%!important;
-    display: flex;
-    align-items: center;
-    text-transform:uppercase;
+	height: 100% !important;
+	display: flex;
+	align-items: center;
+	text-transform: uppercase;
 }
 
 .nav-item:hover {
-    background-color: #000000 !important;
-    color: #ffffff !important;
+	background-color: #000000 !important;
+	color: #ffffff !important;
 }
 
 .navbar {
-    padding: 0;
+	padding: 0;
 }
 
 .nav {
-    height: 45px;
-    padding: 0px;
-    background-color: #282A35;
+	height: 45px;
+	padding: 0px;
+	background-color: #282A35;
 }
 
 .active {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    color: #ffffff !important;
-    font-weight: bold;
-    text-transform:uppercase;
-    background-color: #00a65a;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	color: #ffffff !important;
+	font-weight: bold;
+	text-transform: uppercase;
+	background-color: #00a65a;
 }
 
+.cursor-pointer {
+	cursor: pointer;
+}
 
 .box.box-success {
-    border-top-color: #00a65a;
+	border-top-color: #00a65a;
 }
 
 .box {
-    position: relative;
-    border-radius: 3px;
-    background: #ffffff;
-    border-top: 3px solid #d2d6de;
-    margin-bottom: 20px;
-    width: 100%;
-    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+	position: relative;
+	border-radius: 3px;
+	background: #ffffff;
+	border-top: 3px solid #d2d6de;
+	margin-bottom: 20px;
+	width: 100%;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
 }
 
 .box-body {
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 3px;
-    border-bottom-left-radius: 3px;
-    padding: 10px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 3px;
+	border-bottom-left-radius: 3px;
+	padding: 10px;
 }

@@ -2,8 +2,11 @@ package com.tpq.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -20,6 +23,7 @@ import com.tpq.service.BorrowService;
 import com.tpq.service.BorrowServiceImpl;
 import com.tpq.service.CommonService;
 import com.tpq.service.StudentServiceImpl;
+import com.tpq.utils.Convert;
 
 /**
  * Servlet implementation class BorrowController
@@ -101,9 +105,24 @@ public class BorrowController extends HttpServlet {
 		String searchvalue = request.getParameter("searchvalue");
 		String fromday = request.getParameter("fromday");
 		String today = request.getParameter("today");
-		System.out.println("searchvalue"+searchvalue);
-		if(searchvalue == null)
+		System.out.println("searchvalue" + searchvalue);
+		if (searchvalue == null)
 			searchvalue = "";
+		if (fromday == null)
+			fromday = "";
+		if (today == null)
+			today = "";
+		if (searchvalue.matches("\\d{4}-\\d{2}-\\d{2}")) {
+			if (!Convert.isValidDate(searchvalue)) {
+				RequestDispatcher dispatcher = request.getRequestDispatcher("./view/borrow/index.jsp");
+				dispatcher.forward(request, response);
+			} else {
+				ArrayList<BorrowDTO> listborrow = this.borrowService.list(searchvalue, fromday, today);
+				request.setAttribute("listborrow", listborrow);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("./view/borrow/index.jsp");
+				dispatcher.forward(request, response);
+			}
+		}
 		ArrayList<BorrowDTO> listborrow = this.borrowService.list(searchvalue, fromday, today);
 		request.setAttribute("listborrow", listborrow);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("./view/borrow/index.jsp");
