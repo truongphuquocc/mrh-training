@@ -26,9 +26,6 @@ public class BorrowDAOImpl implements BorrowDAO<BorrowDTO> {
 	@Override
 	public ArrayList<BorrowDTO> list(String searchValue, String fromDay, String Today) throws SQLException {
 		ArrayList<BorrowDTO> listProd = new ArrayList<BorrowDTO>();
-//		if (searchValue != "")
-//			searchValue = "%" + searchValue + "%";
-
 		if (fromDay == "" && Today == "") {
 			String sql = "SELECT br.BorrowID, bo.BookID, bo.Name AS BookName, br.BorrowDate, st.StudentID,\r\n"
 					+ "       st.Name AS StudentName, br.Quantity \r\n"
@@ -162,8 +159,8 @@ public class BorrowDAOImpl implements BorrowDAO<BorrowDTO> {
 		String sql = "UPDATE `bookstore`.`books` SET `Quantity` = `Quantity` - ? WHERE (`BookID` = ?)";
 		jdbcConnection = MySqlCon.connectDb();
 		PreparedStatement statement = jdbcConnection.prepareStatement(sql);
-		statement.setInt(1, id);
-		statement.setInt(2, amount);
+		statement.setInt(1, amount);
+		statement.setInt(2, id);
 		boolean rowUpdated = statement.executeUpdate() > 0;
 		statement.close();
 		MySqlCon.disconnect(jdbcConnection);

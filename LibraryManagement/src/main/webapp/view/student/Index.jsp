@@ -4,36 +4,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Add Student</title>
+<title>Student management</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/assets/Css/base.css">
-<script
-	src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.slim.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<jsp:include page="../common/head.jsp" />
 </head>
 <body>
-	<!-- 	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-		<ul class="navbar-nav">
-			<li class="nav-item active"><a class="nav-link" href="#">Students</a>
-			</li>
-			<li class="nav-item"><a class="nav-link" href="#">Books</a></li>
-			<li class="nav-item"><a class="nav-link" href="#">Brrows</a></li>
-			<li class="nav-item"><a class="nav-link" href="#">Search
-					Borrows</a></li>
-		</ul>
-	</nav> -->
 	<jsp:include page="../common/header.jsp" />
 	<main>
-		<div class="p-3 mb-2 bg-light text-dark">
+		<div class="p-3 mb-2 text-dark">
 			<div class="container d-flex justify-content-between">
 				<div>
 					<h2>Student management</h2>
@@ -60,22 +39,41 @@
 						<tbody>
 							<c:forEach var="student" items="${listStudent}">
 								<tr>
-									<th scope="row"><c:out value="${student.getName()}" /></th>
+									<th scope="row" class="name-item"><c:out
+											value="${student.getName()}" /></th>
 									<td><c:out value="${student.getAge()}" /></td>
 									<c:choose>
 										<c:when test="${student.gender == true }">
-											<td>Nam</td>
+											<td>Male</td>
 										</c:when>
 										<c:otherwise>
-											<td>Nữ</td>
+											<td>Female</td>
 										</c:otherwise>
 									</c:choose>
-
-									<td class="text-center"><a
-										href="student?action=edit&id=<c:out value='${student.studentID}' />"
-										class="btn btn-warning"><i class="fa-solid fa-pen"></i></a> <a
-										href="student?action=delete&id=<c:out value='${student.studentID}' />"
-										class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></a></td>
+									<td class="text-center"><c:choose>
+											<c:when test="${ student.getInUsed() != 0 }">
+												<a
+													href="student?action=edit&id=<c:out value='${student.studentID}' />"
+													class="btn btn-warning"> <i class="fa-solid fa-pen"></i>
+												</a>
+												<a
+													href="student?action=delete&id=<c:out value='${student.studentID}' />"
+													class="btn btn-danger disabled" aria-disabled="true"> <i
+													class="fa-solid fa-trash-can"></i>
+												</a>
+											</c:when>
+											<c:otherwise>
+												<a
+													href="student?action=edit&id=<c:out value='${student.studentID}' />"
+													class="btn btn-warning"> <i class="fa-solid fa-pen"></i>
+												</a>
+												<a data-id="${student.studentID}"
+													href="student?action=delete&id=<c:out value='${student.studentID}' />"
+													class="btn btn-danger openmodal"> <i
+													class="fa-solid fa-trash-can"></i>
+												</a>
+											</c:otherwise>
+										</c:choose>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -84,5 +82,8 @@
 			</div>
 		</div>
 	</main>
+	<!-- Modal delete -->
+	<jsp:include page="../common/modaldelete.jsp" />
 </body>
+<jsp:include page="../common/script.jsp" />
 </html>

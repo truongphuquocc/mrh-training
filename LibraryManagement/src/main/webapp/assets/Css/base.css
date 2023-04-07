@@ -68,3 +68,16 @@ body {
 	border-bottom-left-radius: 3px;
 	padding: 10px;
 }
+
+.error,
+.error-be {
+	color: #ff0000;
+}
+
+.error-be {
+	display: block;
+}
+
+.icon__modal-title {
+	color: #dc3545;
+}

@@ -9,135 +9,144 @@ import java.util.ArrayList;
 
 import com.tpq.dto.BookDTO;
 
-public class BookDAOImpl implements CommonDAO<BookDTO> {
-	private Connection jdbcConnection;
-	
-	
-	public BookDAOImpl() {
+public class BookDAOImpl implements CommonDAO<BookDTO>, BookDAO {
+  private Connection jdbcConnection;
 
-	}
 
-	@Override
-	public ArrayList<BookDTO> list() throws SQLException {
-		ArrayList<BookDTO> listProd = new ArrayList<BookDTO>();
+  public BookDAOImpl() {
 
-		String sql = "SELECT * FROM books";
+  }
 
-		jdbcConnection = MySqlCon.connectDb();
+  @Override
+  public ArrayList<BookDTO> list() throws SQLException {
+    ArrayList<BookDTO> listProd = new ArrayList<BookDTO>();
 
-		Statement statement = jdbcConnection.createStatement();
-		ResultSet resultSet = statement.executeQuery(sql);
+    String sql = "SELECT * FROM books";
 
-		while (resultSet.next()) {
-			int id = resultSet.getInt("BookID");
-			String name = resultSet.getString("Name");
-			int totalPage = resultSet.getInt("TotalPage");
-			String type = resultSet.getString("Type");
-			int quantity = resultSet.getInt("Quantity");
-			BookDTO book = new BookDTO(id, name, totalPage, type, quantity);
-			listProd.add(book);
-		}
+    jdbcConnection = MySqlCon.connectDb();
 
-		resultSet.close();
-		statement.close();
+    Statement statement = jdbcConnection.createStatement();
+    ResultSet resultSet = statement.executeQuery(sql);
 
-		MySqlCon.disconnect(jdbcConnection);
+    while (resultSet.next()) {
+      int id = resultSet.getInt("BookID");
+      String name = resultSet.getString("Name");
+      int totalPage = resultSet.getInt("TotalPage");
+      String type = resultSet.getString("Type");
+      int quantity = resultSet.getInt("Quantity");
+      BookDTO book = new BookDTO(id, name, totalPage, type, quantity);
+      listProd.add(book);
+    }
 
-		return listProd;
-	}
+    resultSet.close();
+    statement.close();
 
-	@Override
-	public boolean add(BookDTO data) throws SQLException {
-		String sqlInsert = "insert into Books (Name,TotalPage,Quantity, Type) values(?,?,?,?);";
-		jdbcConnection = MySqlCon.connectDb();
-		PreparedStatement statement = jdbcConnection.prepareStatement(sqlInsert);
-		statement.setString(1, data.getName());
-		statement.setInt(2, data.getTotalPage());
-		statement.setInt(3, data.getQuantity());
-		statement.setString(4, data.getType());
-		
-		boolean rowInserted = statement.executeUpdate() > 0;
-		statement.close();
-		MySqlCon.disconnect(jdbcConnection);
-		return rowInserted;
-	}
+    MySqlCon.disconnect(jdbcConnection);
 
-	@Override
-	public boolean update(BookDTO data) throws SQLException {
-		String sql = "UPDATE books SET Name = ?, TotalPage = ?, Quantity = ?, Type = ?  WHERE BookID = ?";
-		jdbcConnection = MySqlCon.connectDb();
+    return listProd;
+  }
 
-		PreparedStatement statement = jdbcConnection.prepareStatement(sql);
-		statement.setString(1, data.getName());
-		statement.setInt(2, data.getTotalPage());
-		statement.setInt(3, data.getQuantity());
-		statement.setString(4, data.getType());
-		statement.setInt(5, data.getBookID());
-		boolean rowUpdated = statement.executeUpdate() > 0;
-		statement.close();
-		MySqlCon.disconnect(jdbcConnection);
-		return rowUpdated;
-	}
+  @Override
+  public boolean add(BookDTO data) throws SQLException {
+    String sqlInsert = "insert into Books (Name,TotalPage,Quantity, Type) values(?,?,?,?);";
+    jdbcConnection = MySqlCon.connectDb();
+    PreparedStatement statement = jdbcConnection.prepareStatement(sqlInsert);
+    statement.setString(1, data.getName());
+    statement.setInt(2, data.getTotalPage());
+    statement.setInt(3, data.getQuantity());
+    statement.setString(4, data.getType());
 
-	@Override
-	public boolean delete(int id) throws SQLException {
-		String sql = "DELETE FROM books where BookID = ?";
+    boolean rowInserted = statement.executeUpdate() > 0;
+    statement.close();
+    MySqlCon.disconnect(jdbcConnection);
+    return rowInserted;
+  }
 
-		jdbcConnection = MySqlCon.connectDb();
+  @Override
+  public boolean update(BookDTO data) throws SQLException {
+    String sql =
+        "UPDATE books SET Name = ?, TotalPage = ?, Quantity = ?, Type = ?  WHERE BookID = ?";
+    jdbcConnection = MySqlCon.connectDb();
 
-		PreparedStatement statement = jdbcConnection.prepareStatement(sql);
-		statement.setInt(1, id);
+    PreparedStatement statement = jdbcConnection.prepareStatement(sql);
+    statement.setString(1, data.getName());
+    statement.setInt(2, data.getTotalPage());
+    statement.setInt(3, data.getQuantity());
+    statement.setString(4, data.getType());
+    statement.setInt(5, data.getBookID());
+    boolean rowUpdated = statement.executeUpdate() > 0;
+    statement.close();
+    MySqlCon.disconnect(jdbcConnection);
+    return rowUpdated;
+  }
 
-		boolean rowDeleted = statement.executeUpdate() > 0;
-		statement.close();
-		MySqlCon.disconnect(jdbcConnection);
-		return rowDeleted;
-	}
+  @Override
+  public boolean delete(int id) throws SQLException {
+    String sql = "DELETE FROM books where BookID = ?";
 
-	@Override
-	public BookDTO get(int id) throws SQLException {
-		BookDTO stu = null;
-		String sql = "SELECT * FROM books WHERE BookID = ?";
+    jdbcConnection = MySqlCon.connectDb();
 
-		jdbcConnection = MySqlCon.connectDb();
+    PreparedStatement statement = jdbcConnection.prepareStatement(sql);
+    statement.setInt(1, id);
 
-		PreparedStatement statement = jdbcConnection.prepareStatement(sql);
-		statement.setInt(1, id);
+    boolean rowDeleted = statement.executeUpdate() > 0;
+    statement.close();
+    MySqlCon.disconnect(jdbcConnection);
+    return rowDeleted;
+  }
 
-		ResultSet resultSet = statement.executeQuery();
+  @Override
+  public BookDTO get(int id) throws SQLException {
+    BookDTO stu = null;
+    String sql = "SELECT * FROM books WHERE BookID = ?";
+    jdbcConnection = MySqlCon.connectDb();
+    PreparedStatement statement = jdbcConnection.prepareStatement(sql);
+    statement.setInt(1, id);
+    ResultSet resultSet = statement.executeQuery();
+    if (resultSet.next()) {
+      id = resultSet.getInt("BookID");
+      String name = resultSet.getString("Name");
+      int totalPage = resultSet.getInt("TotalPage");
+      String type = resultSet.getString("Type");
+      int quantity = resultSet.getInt("Quantity");
+      stu = new BookDTO(id, name, totalPage, type, quantity);
+    }
+    resultSet.close();
+    statement.close();
+    MySqlCon.disconnect(jdbcConnection);
+    return stu;
+  }
 
-		if (resultSet.next()) {
-			id = resultSet.getInt("BookID");
-			String name = resultSet.getString("Name");
-			int totalPage = resultSet.getInt("TotalPage");
-			String type = resultSet.getString("Type");
-			int quantity = resultSet.getInt("Quantity");
-			stu = new BookDTO(id, name, totalPage, type, quantity);
-		}
+  @Override
+  public int inUsed(int id) throws SQLException {
+    String sql = "SELECT COUNT(BookID) AS Isdisabe FROM Borrows where BookID = ?;";
+    jdbcConnection = MySqlCon.connectDb();
+    PreparedStatement statement = jdbcConnection.prepareStatement(sql);
+    statement.setInt(1, id);
+    ResultSet result = statement.executeQuery();
+    while (result.next()) {
+      return (int) result.getInt(1);
+    }
+    statement.close();
+    MySqlCon.disconnect(jdbcConnection);
+    return -1;
+  }
 
-		resultSet.close();
-		statement.close();
-		MySqlCon.disconnect(jdbcConnection);
-		return stu;
-	}
-
-	@Override
-	public int inUsed(int id) throws SQLException {
-		String sql = "SELECT COUNT(BookID) AS Isdisabe FROM Borrows where BookID = ?;";
-
-		jdbcConnection = MySqlCon.connectDb();
-
-		PreparedStatement statement = jdbcConnection.prepareStatement(sql);
-		statement.setInt(1, id);
-
-		ResultSet result = statement.executeQuery();
-		while (result.next()) {
-			return (int) result.getInt(1);
-		}
-
-		statement.close();
-		MySqlCon.disconnect(jdbcConnection);
-		return -1;
-	}
+  @Override
+  public int checkNameBook(String name) throws SQLException {
+    jdbcConnection = MySqlCon.connectDb();
+    String sql =
+        "SELECT COUNT(name) AS Name FROM Bookstore.books where UPPER(books.name) = UPPER(?)";
+    PreparedStatement statement = jdbcConnection.prepareStatement(sql);
+    statement.setString(1, name);
+    ResultSet resultSet = statement.executeQuery();
+    while (resultSet.next()) {
+      return resultSet.getInt(1);
+    }
+    resultSet.close();
+    statement.close();
+    MySqlCon.disconnect(jdbcConnection);
+    return 0;
+  }
 
 }
