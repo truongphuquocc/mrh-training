@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+	<!-- Base Template START -->
+	<definition name="base.template" template="/templates/base-template.jsp">
+		<put-attribute name="title" value=""/>
+		<put-attribute name="head" value="/common-fragments/head.jsp"/>
+		<put-attribute name="header" value="/common-fragments/header.jsp"/>
+		<put-attribute name="main-content" value=""/>
+		<put-attribute name="footer" value="/common-fragments/footer.jsp"/>
+		<put-list-attribute name="stylesheets" inherit="true">
+		</put-list-attribute>
+	</definition>
+	<!-- Base Template END -->
+	<!-- DMX Page START -->
+	<definition name="tiles.dmx" extends="base.template">
+		<put-attribute name="title" value="Điện Máy Xanh"/>
+		<put-attribute name="main-content" value="/main-content-fragments/dmx.jsp"/>
+		<put-list-attribute name="stylesheets" inherit="true">
+			<add-attribute value="/styles/dmx.css"/>
+		</put-list-attribute>
+		<put-list-attribute name="javascripts" inherit="true">
+			<add-attribute value="/scripts/dmx.js"/>
+		</put-list-attribute>
+	</definition>
+	<!-- DMX Page END -->
+	<!-- Brand Page START -->
+	<definition name="tiles.brand" extends="base.template">
+		<put-attribute name="title" value="Brand Management"/>
+		<put-attribute name="main-content" value="/main-content-fragments/brand.jsp"/>
+		<put-list-attribute name="stylesheets" inherit="true">
+			<add-attribute value="/styles/brand.css"/>
+		</put-list-attribute>
+		<put-list-attribute name="javascripts" inherit="true">
+			<add-attribute value="/scripts/brand.js"/>
+		</put-list-attribute>
+	</definition>
+	<!-- Brand Page END -->
+</tiles-definitions>
