@@ -36,4 +36,16 @@
 		</put-list-attribute>
 	</definition>
 	<!-- Brand Page END -->
+		<!-- Product Page START -->
+	<definition name="tiles.product" extends="base.template">
+		<put-attribute name="title" value="Product Management"/>
+		<put-attribute name="main-content" value="/main-content-fragments/product.jsp"/>
+		<put-list-attribute name="stylesheets" inherit="true">
+			<add-attribute value="/styles/product.css"/>
+		</put-list-attribute>
+		<put-list-attribute name="javascripts" inherit="true">
+			<add-attribute value="/scripts/product.js"/>
+		</put-list-attribute>
+	</definition>
+	<!-- Product Page END -->
 </tiles-definitions>

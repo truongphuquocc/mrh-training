@@ -1,10 +1,14 @@
 package com.pilot.entity;
 
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -20,90 +24,93 @@ import org.springframework.web.multipart.MultipartFile;
 @Table(name = "BRAND")
 public class BrandEntity {
 
-    @Id
-    @Column(name = "BRAND_ID", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long brandId;
+  @Id
+  @Column(name = "BRAND_ID", nullable = false)
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private Long brandId;
 
-    @Column(name = "BRAND_NAME", length = 100, nullable = true)
-    private String brandName;
+  @Column(name = "BRAND_NAME", length = 100, nullable = true)
+  private String brandName;
 
-    @Column(name = "DESCRIPTION", nullable = true)
-    private String description;
+  @Column(name = "DESCRIPTION", nullable = true)
+  private String description;
 
-    @Column(name = "LOGO", nullable = true)
-    private String logo;
+  @Column(name = "LOGO", nullable = true)
+  private String logo;
 
-    @Transient
-    private MultipartFile[] logoFiles;
+  @Transient
+  private MultipartFile[] logoFiles;
 
-    /**
-     * @return the brandId
-     */
-    public Long getBrandId() {
-        return brandId;
-    }
+  @OneToMany(mappedBy = "brand", fetch = FetchType.EAGER)
+  private List<ProductEntity> product;
 
-    /**
-     * @param brandId the brandId to set
-     */
-    public void setBrandId(Long brandId) {
-        this.brandId = brandId;
-    }
+  /**
+   * @return the brandId
+   */
+  public Long getBrandId() {
+    return brandId;
+  }
 
-    /**
-     * @return the brandName
-     */
-    public String getBrandName() {
-        return brandName;
-    }
+  /**
+   * @param brandId the brandId to set
+   */
+  public void setBrandId(Long brandId) {
+    this.brandId = brandId;
+  }
 
-    /**
-     * @param brandName the brandName to set
-     */
-    public void setBrandName(String brandName) {
-        this.brandName = brandName;
-    }
+  /**
+   * @return the brandName
+   */
+  public String getBrandName() {
+    return brandName;
+  }
 
-    /**
-     * @return the description
-     */
-    public String getDescription() {
-        return description;
-    }
+  /**
+   * @param brandName the brandName to set
+   */
+  public void setBrandName(String brandName) {
+    this.brandName = brandName;
+  }
 
-    /**
-     * @param description the description to set
-     */
-    public void setDescription(String description) {
-        this.description = description;
-    }
+  /**
+   * @return the description
+   */
+  public String getDescription() {
+    return description;
+  }
 
-    /**
-     * @return the logo
-     */
-    public String getLogo() {
-        return logo;
-    }
+  /**
+   * @param description the description to set
+   */
+  public void setDescription(String description) {
+    this.description = description;
+  }
 
-    /**
-     * @param logo the logo to set
-     */
-    public void setLogo(String logo) {
-        this.logo = logo;
-    }
+  /**
+   * @return the logo
+   */
+  public String getLogo() {
+    return logo;
+  }
 
-    /**
-     * @return the logoFiles
-     */
-    public MultipartFile[] getLogoFiles() {
-        return logoFiles;
-    }
+  /**
+   * @param logo the logo to set
+   */
+  public void setLogo(String logo) {
+    this.logo = logo;
+  }
 
-    /**
-     * @param logoFiles the logoFiles to set
-     */
-    public void setLogoFiles(MultipartFile[] logoFiles) {
-        this.logoFiles = logoFiles;
-    }
+  /**
+   * @return the logoFiles
+   */
+  public MultipartFile[] getLogoFiles() {
+    return logoFiles;
+  }
+
+  /**
+   * @param logoFiles the logoFiles to set
+   */
+  public void setLogoFiles(MultipartFile[] logoFiles) {
+    this.logoFiles = logoFiles;
+  }
 }

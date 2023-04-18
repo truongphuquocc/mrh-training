@@ -230,3 +230,4 @@ var Brand = (function() {
 		brand.initialize();
 	});
 })(new Brand());
+

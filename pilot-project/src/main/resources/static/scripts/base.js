@@ -134,3 +134,45 @@ function showMsgOnField($element, message, isSuccessMsg) {
 	$element.find(".form-msg").remove();
 	$element.parent().append("<div class='" + className + " form-msg'>" + message + "</div>");
 }
+
+function readURL(input) {
+	if (input.files && input.files[0]) {
+		var reader = new FileReader();
+
+		reader.onload = function(e) {
+			$(".image-upload-wrap").hide();
+
+			$(".file-upload-image").attr("src", e.target.result);
+			$(".file-upload-content").css({
+				display: "flex",
+				"justify-content": "start",
+				"align-items": "center",
+			});
+		};
+
+		reader.readAsDataURL(input.files[0]);
+	} else {
+		removeUpload();
+	}
+}
+
+function removeUpload() {
+	$(".file-upload-input").replaceWith($(".file-upload-input").clone());
+	$(".file-upload-content").hide();
+	$(".image-upload-wrap").show();
+}
+$(".image-upload-wrap").bind("dragover", function() {
+	$(".image-upload-wrap").addClass("image-dropping");
+});
+$(".image-upload-wrap").bind("dragleave", function() {
+	$(".image-upload-wrap").removeClass("image-dropping");
+});
+
+$(function() {
+	$(".datepicker").datepicker({
+		language: "es",
+		autoclose: true,
+		format: "dd-mm-yyyy",
+		inline: true,
+	});
+});
