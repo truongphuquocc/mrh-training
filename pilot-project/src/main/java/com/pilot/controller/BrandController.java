@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.pilot.entity.BrandEntity;
 import com.pilot.model.ResponseDataModel;
-import com.training.service.BrandService;
+import com.pilot.service.BrandService;
 
 /**
  * This class is used to declare controller related to Brand management

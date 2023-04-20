@@ -21,7 +21,7 @@ import com.pilot.dao.BrandDao;
 import com.pilot.entity.BrandEntity;
 import com.pilot.model.PagerModel;
 import com.pilot.model.ResponseDataModel;
-import com.training.service.BrandService;
+import com.pilot.service.BrandService;
 
 /**
  * This class is used to implement functions to handle logic and business for Brand Entities

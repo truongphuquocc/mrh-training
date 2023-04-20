@@ -18,7 +18,8 @@ import org.springframework.stereotype.Repository;
 import com.pilot.entity.BrandEntity;
 
 /**
- * This interface is used to declare functions to react with Database for Brand Entities
+ * This interface is used to declare functions to react with Database for Brand
+ * Entities
  * 
  * @author PhuQuoc
  * @since Apr 11, 2023
@@ -53,7 +54,6 @@ public interface BrandDao
         if (searchConditionsMap != null) {
 
           String keyword = (String) searchConditionsMap.get("keyword");
-          System.out.println("kwwwwwwwwwwwwwwww"+ keyword);
           // Keyword Predicate
           if (StringUtils.isNotEmpty(keyword)) {
             predicates.add(criteriaBuilder.or(

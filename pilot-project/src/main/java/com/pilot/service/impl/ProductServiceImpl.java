@@ -29,7 +29,7 @@ import com.pilot.entity.ProductEntity;
 import com.pilot.entity.ProductEntity;
 import com.pilot.model.PagerModel;
 import com.pilot.model.ResponseDataModel;
-import com.training.service.ProductService;
+import com.pilot.service.ProductService;
 
 /**
  * @author PhuQuoc

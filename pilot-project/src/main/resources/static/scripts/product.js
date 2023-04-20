@@ -33,8 +33,6 @@ var Product = (function() {
 				currentPage: Number(_self.currentPageNumber),
 
 			};
-			console.log("searchData: " + searchData.priceFrom)
-			console.log("searchData: " + searchData.priceTo)
 			$.ajax({
 				url: "/product/api/search",
 				type: "POST",

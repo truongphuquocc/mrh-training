@@ -21,7 +21,7 @@ import com.pilot.dao.ProductDao;
 import com.pilot.entity.BrandEntity;
 import com.pilot.entity.ProductEntity;
 import com.pilot.model.ResponseDataModel;
-import com.training.service.ProductService;
+import com.pilot.service.ProductService;
 
 /**
  * @author PhuQuoc
