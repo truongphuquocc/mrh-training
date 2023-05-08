@@ -22,6 +22,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonFormat.Shape;
+import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
+import com.pilot.common.constant.Constants;
 import com.pilot.common.util.CommonUtil;
 
 /**
@@ -47,8 +49,10 @@ public class ProductEntity {
   private double price;
 
   @Column(name = "SALE_DATE", nullable = true)
-  @JsonFormat(pattern = "dd-MM-yyyy", shape = Shape.STRING)
-  private String saleDate;
+  //@JsonFormat(pattern = "dd-MM-yyyy", shape = Shape.STRING)
+//  @Temporal(TemporalType.DATE)
+//  @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss")
+  private Date saleDate;
 
   @Column(name = "IMAGE", length = 100, nullable = true)
   private String image;
@@ -137,20 +141,31 @@ public class ProductEntity {
    * @throws ParseException 
    */
   public String getSaleDate() {
-    Locale locale = new Locale("vi","VN");
-    Date cvStringToDate = CommonUtil.cvStringToDate(saleDate, "yyyy-MM-dd");
-    String cvDateToString = CommonUtil.cvDateToString(cvStringToDate, "dd-MM-yyyy", locale);
-    return cvDateToString;
+    return CommonUtil.cvDateToString(saleDate, Constants.DATE_FORMAT_FOR_ddMMyy);
   }
 
   /**
    * @param saleDate the saleDate to set
    */
   public void setSaleDate(String saleDate) {
-    Date cvStringToDate = CommonUtil.cvStringToDate(saleDate, "dd-MM-yyyy");
-    String cvDateToString = CommonUtil.cvDateToString(cvStringToDate, "yyyy-MM-dd");
-    this.saleDate = cvDateToString;
+  
+    this.saleDate = CommonUtil.cvStringToDate(saleDate, Constants.DATE_FORMAT_FOR_ddMMyy);
   }
+//  public String getSaleDate() {
+//    Locale locale = new Locale("vi","VN");
+//    Date cvStringToDate = CommonUtil.cvStringToDate(saleDate, "yyyy-MM-dd");
+//    String cvDateToString = CommonUtil.cvDateToString(cvStringToDate, "dd-MM-yyyy", locale);
+//    return cvDateToString;
+//  }
+//
+//  /**
+//   * @param saleDate the saleDate to set
+//   */
+//  public void setSaleDate(String saleDate) {
+//    Date cvStringToDate = CommonUtil.cvStringToDate(saleDate, "dd-MM-yyyy");
+//    String cvDateToString = CommonUtil.cvDateToString(cvStringToDate, "yyyy-MM-dd");
+//    this.saleDate = cvDateToString;
+//  }
 
   /**
    * @return the image

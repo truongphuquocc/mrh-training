@@ -17,6 +17,22 @@
 		</put-list-attribute>
 	</definition>
 	<!-- Base Template END -->
+	<!-- Base User Template START -->
+	<definition name="base-user.template"
+		template="/templates/base-user-template.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="head"
+			value="/common-user-fragments/head.jsp" />
+		<put-attribute name="header"
+			value="/common-user-fragments/header.jsp" />
+		<put-attribute name="discount-in-day" value="" />
+		<put-attribute name="footer"
+			value="/common-user-fragments/footer.jsp" />
+		<put-list-attribute name="stylesheets"
+			inherit="true">
+		</put-list-attribute>
+	</definition>
+	<!-- Base User Template END -->
 	<!-- Base Login START -->
 	<definition name="login.template"
 		template="/templates/login-template.jsp">
@@ -46,7 +62,51 @@
 		</put-list-attribute>
 	</definition>
 	<!-- DMX Page END -->
-	<!-- Brand Page START -->
+	<!-- User Page START -->
+	<definition name="tiles.homepage"
+		extends="base-user.template">
+		<put-attribute name="title" value="Brand Management" />
+		<put-attribute name="discount-in-day"
+			value="/main-content-fragments/homepage.jsp" />
+		<put-list-attribute name="stylesheets"
+			inherit="true">
+			<add-attribute value="/styles/user.css" />
+		</put-list-attribute>
+		<put-list-attribute name="javascripts"
+			inherit="true">
+			<add-attribute value="/scripts/user.js" />
+		</put-list-attribute>
+	</definition>
+	<definition name="tiles.productofbrand"
+		extends="base-user.template">
+		<put-attribute name="title" value="Brand Management" />
+		<put-attribute name="discount-in-day"
+			value="/main-content-fragments/ProductOfBrand.jsp" />
+		<put-list-attribute name="stylesheets"
+			inherit="true">
+			<add-attribute value="/styles/ProductOfBrand.css" />
+		</put-list-attribute>
+		<put-list-attribute name="javascripts"
+			inherit="true">
+			<add-attribute value="/scripts/ProductOfBrand.js" />
+		</put-list-attribute>
+	</definition>
+	<definition name="tiles.detailproduct"
+		extends="base-user.template">
+		<put-attribute name="title" value="Brand Management" />
+		<put-attribute name="discount-in-day"
+			value="/main-content-fragments/detail-product.jsp" />
+		<put-list-attribute name="stylesheets"
+			inherit="true">
+			<add-attribute value="/styles/detail-product.css" />
+		</put-list-attribute>
+		<put-list-attribute name="javascripts"
+			inherit="true">
+			<add-attribute value="/scripts/detail-product.js" />
+		</put-list-attribute>
+	</definition>
+	<!-- User Page END -->
+	<!-- User Page START -->
 	<definition name="tiles.brand" extends="base.template">
 		<put-attribute name="title" value="Brand Management" />
 		<put-attribute name="main-content"
@@ -60,7 +120,7 @@
 			<add-attribute value="/scripts/brand.js" />
 		</put-list-attribute>
 	</definition>
-	<!-- Brand Page END -->
+	<!-- User Page END -->
 	<!-- Product Page START -->
 	<definition name="tiles.product" extends="base.template">
 		<put-attribute name="title" value="Product Management" />

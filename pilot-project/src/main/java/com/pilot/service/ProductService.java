@@ -27,4 +27,8 @@ public interface ProductService {
   ProductEntity findByProductName(String productName);
 
   ResponseDataModel searchWithPager(Map<String, Object> searchDataMap);
+  
+  ResponseDataModel searchWithPagerUser(Map<String, Object> searchDataMap);
+  
+  ResponseDataModel findByBrand2(Map<String, Object> searchDataMap);
 }

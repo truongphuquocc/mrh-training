@@ -31,7 +31,6 @@ var Product = (function() {
 				priceFrom: $("#priceFrom").val(),
 				priceTo: $("#priceTo").val(),
 				currentPage: Number(_self.currentPageNumber),
-
 			};
 			$.ajax({
 				url: "/product/api/search",
@@ -269,8 +268,8 @@ var Product = (function() {
 			// Search brand after search fields when click clear search field button
 			$('#clearSearchFieldBtn').on('click', function() {
 				$("#keyword").val("");
-				$("#priceTo").val("0");
-				$("#priceFrom").val("0");
+				$("#priceTo").val("");
+				$("#priceFrom").val("");
 				_self.currentPageNumber = 1;
 				_self.searchProducts();
 			});

@@ -46,7 +46,7 @@ public class WebSecurityConfig {
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     http.csrf().disable().authorizeRequests()
-        .antMatchers("/","/css/**", "/js/**","/styles/**","/scripts/**", "/images/**","/plugins/**","/login").permitAll()
+        .antMatchers("/","/home","/css/**", "/js/**","/styles/**","/scripts/**", "/images/**","/plugins/**","/login").permitAll()
         .antMatchers("/brand", "/product").access("hasRole('ROLE_ADMIN')").anyRequest()
         .authenticated().and().formLogin().loginPage("/login").loginProcessingUrl("/loginAction")
         .defaultSuccessUrl("/product").usernameParameter("username").passwordParameter("password")

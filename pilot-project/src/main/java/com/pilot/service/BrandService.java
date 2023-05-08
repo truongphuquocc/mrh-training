@@ -21,11 +21,13 @@ public interface BrandService {
 
   ResponseDataModel delete(Long brandId);
 
-  List<BrandEntity> getAll();
+  //List<BrandEntity> getAll();
 
   BrandEntity findByBrandId(Long brandId);
 
   BrandEntity findByBrandName(String brandName);
 
   ResponseDataModel searchWithPager(Map<String, Object> searchDataMap);
+  
+  ResponseDataModel getAll(Map<String, Object> searchDataMap);
 }

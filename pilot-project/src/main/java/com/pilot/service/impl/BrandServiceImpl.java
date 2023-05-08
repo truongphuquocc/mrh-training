@@ -126,10 +126,10 @@ public class BrandServiceImpl implements BrandService {
     return brandDao.findByBrandId(brandId);
   }
 
-  @Override
-  public List<BrandEntity> getAll() {
-    return brandDao.findAll(Sort.by(Sort.Direction.DESC, "brandId"));
-  }
+//  @Override
+//  public List<BrandEntity> getAll() {
+//    return brandDao.findAll(Sort.by(Sort.Direction.DESC, "brandId"));
+//  }
 
   @Override
   public BrandEntity findByBrandName(String brandName) {
@@ -151,6 +151,23 @@ public class BrandServiceImpl implements BrandService {
       responseMap.put("brandsList", brandEntitiesPage.getContent());
       responseMap.put("paginationInfo",
           new PagerModel(pageNumber, brandEntitiesPage.getTotalPages()));
+      responseCode = Constants.RESULT_CD_SUCCESS;
+    } catch (Exception e) {
+      responseMsg = e.getMessage();
+      LOGGER.error("Error when get all brand: {}", e);
+    }
+    return new ResponseDataModel(responseCode, responseMsg, responseMap);
+  }
+  
+  @Override
+  public ResponseDataModel getAll(Map<String, Object> searchDataMap) {
+
+    int responseCode = Constants.RESULT_CD_FAIL;
+    String responseMsg = StringUtils.EMPTY;
+    Map<String, Object> responseMap = new HashMap<>();
+    try {
+      List<BrandEntity> brandEntitiesPage = brandDao.findAll(BrandDao.getSearchCriteria(searchDataMap));
+      responseMap.put("brandsList", brandEntitiesPage);
       responseCode = Constants.RESULT_CD_SUCCESS;
     } catch (Exception e) {
       responseMsg = e.getMessage();

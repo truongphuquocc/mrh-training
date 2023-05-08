@@ -15,7 +15,7 @@
 								<label for="" class="input-group-text">Price from</label>
 							</div>
 							<select class="custom-select mr-sm-2" id="priceFrom">
-								<option value="0" selected>Choose Price...</option>
+								<option value="" selected>Choose Price...</option>
 								<option value="5000000">5.000.000</option>
 								<option value="10000000">10.000.000</option>
 								<option value="20000000">20.000.000</option>
@@ -26,10 +26,10 @@
 					<div class="form-group col-3">
 						<div class="input-group">
 							<div class="input-group-append">
-								<label for="" class="input-group-text">Price from</label>
+								<label for="" class="input-group-text">Price to</label>
 							</div>
 							<select class="custom-select mr-sm-2" id="priceTo">
-								<option value="0" selected>Choose Price...</option>
+								<option value="" selected>Choose Price...</option>
 								<option value="10000000">10.000.000</option>
 								<option value="15000000">15.000.000</option>
 								<option value="20000000">20.000.000</option>
@@ -40,7 +40,7 @@
 					</div>
 					<div class="input-group d-flex col-6">
 						<input type="text" class="form-control" id="keyword"
-							placeholder="Something clever..">
+							placeholder="Product name, description">
 						<div class="d-block">
 							<button class="btn btn-primary" id="searchProductBtn"
 								type="button">
@@ -67,7 +67,7 @@
 							<th scope="col">Brand Name</th>
 							<th scope="col">opening For Sale</th>
 							<th scope="col">Image</th>
-							<th scope="col"></th>
+							<th scope="col" style="width: 115px"></th>
 						</tr>
 					</thead>
 					<tbody>

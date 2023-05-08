@@ -1,5 +1,6 @@
 package com.pilot.dao;
 
+import java.util.List;
 import java.util.Map;
 import org.springframework.data.jpa.domain.Specification;
 import com.pilot.entity.ProductEntity;
@@ -10,6 +11,8 @@ import com.pilot.entity.ProductEntity;
  */
 public interface ProductDao {
   ProductEntity findByProductId(Long productId);
+  
+  List<ProductEntity> findByBrand(Long brandId);
 
   ProductEntity findByProductName(String productName);
 

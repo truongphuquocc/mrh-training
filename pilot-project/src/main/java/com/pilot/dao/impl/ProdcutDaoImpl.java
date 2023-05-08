@@ -9,6 +9,7 @@ import java.util.Map;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
@@ -17,9 +18,10 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Repository;
-
+import org.springframework.util.CollectionUtils;
 import com.pilot.dao.ProductDao;
 import com.pilot.dao.repository.ProductRepository;
+import com.pilot.entity.BrandEntity;
 import com.pilot.entity.ProductEntity;
 
 /**
@@ -50,64 +52,59 @@ public class ProdcutDaoImpl implements ProductDao {
 
   @Override
   public Specification<ProductEntity> getSearchCriteria(Map<String, Object> searchConditionsMap) {
+
     return new Specification<ProductEntity>() {
-      private static final long serialVersionUID = 1L;
+        private static final long serialVersionUID = 1L;
 
-      @Override
-      public Predicate toPredicate(Root<ProductEntity> productRoot, CriteriaQuery<?> query,
-          CriteriaBuilder criteriaBuilder) {
+        @SuppressWarnings("unchecked")
+        @Override
+        public Predicate toPredicate(Root<ProductEntity> productRoot, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
 
-        List<Predicate> predicates = new ArrayList<>();
-        if (searchConditionsMap != null) {
-          String priceFrom = (String) searchConditionsMap.get("priceFrom");
-          Double priceFromParse = Double.parseDouble(priceFrom);
-          String priceTo = (String) searchConditionsMap.get("priceTo");
-          Double priceToParse = Double.parseDouble(priceTo);
-          String keyword = (String) searchConditionsMap.get("keyword");
-          if (StringUtils.isNotEmpty(keyword) && priceFromParse == 0 && priceToParse == 0) {
-            predicates.add(criteriaBuilder.or(
-                criteriaBuilder.like(productRoot.get("productName"), "%" + keyword + "%"),
-                criteriaBuilder.like(productRoot.get("brand").get("brandName"),
-                    "%" + keyword + "%")));
-          }
-          if (StringUtils.isEmpty(keyword) && priceFromParse > 0 && priceToParse > 0) {
-            predicates.add(criteriaBuilder.and(
-                criteriaBuilder.between(productRoot.get("price"), priceFromParse, priceToParse)));
-          }
-          if (StringUtils.isNotEmpty(keyword) && priceFromParse > 0 && priceToParse > 0) {
-            predicates.add(criteriaBuilder.and(
-                criteriaBuilder.or(
-                    criteriaBuilder.like(productRoot.get("productName"), "%" + keyword + "%"),
-                    criteriaBuilder.like(productRoot.get("brand").get("brandName"),
-                        "%" + keyword + "%")),
-                criteriaBuilder.between(productRoot.get("price"), priceFromParse, priceToParse)));
-          }
-          if (StringUtils.isEmpty(keyword) && priceFromParse > 0 && priceToParse == 0) {
-            predicates.add(criteriaBuilder.gt(productRoot.get("price"), priceFromParse));
-          }
-          if (StringUtils.isNotEmpty(keyword) && priceFromParse > 0 && priceToParse == 0) {
-            predicates.add(
-                criteriaBuilder.and(criteriaBuilder.gt(productRoot.get("price"), priceFromParse),
-                    criteriaBuilder.or(
-                        criteriaBuilder.like(productRoot.get("productName"), "%" + keyword + "%"),
-                        criteriaBuilder.like(productRoot.get("brand").get("brandName"),
-                            "%" + keyword + "%"))));
-          }
-          if (StringUtils.isEmpty(keyword) && priceFromParse == 0 && priceToParse > 0) {
-            predicates.add(criteriaBuilder.lt(productRoot.get("price"), priceToParse));
-          }
-          if (StringUtils.isNotEmpty(keyword) && priceFromParse == 0 && priceToParse > 0) {
-            predicates
-                .add(criteriaBuilder.and(criteriaBuilder.lt(productRoot.get("price"), priceToParse),
-                    criteriaBuilder.or(
-                        criteriaBuilder.like(productRoot.get("productName"), "%" + keyword + "%"),
-                        criteriaBuilder.like(productRoot.get("brand").get("brandName"),
-                            "%" + keyword + "%"))));
-          }
+            List<Predicate> predicates = new ArrayList<>();
+            if (searchConditionsMap != null) {
+                String keyword = (String) searchConditionsMap.get("keyword");
+                String priceFrom = (String) searchConditionsMap.get("priceFrom");
+                String priceTo = (String) searchConditionsMap.get("priceTo");
+                //List<String> brandIds = (List<String>) searchConditionsMap.get("brandIds");
+                //Join<ProductEntity, BrandEntity> brandRoot = productRoot.join("brand");
+
+                // Keyword Predicate
+                if (StringUtils.isNotEmpty(keyword)) {
+                    predicates.add(criteriaBuilder.or(
+                            criteriaBuilder.like(productRoot.get("productName"), "%" + keyword + "%"),
+                            criteriaBuilder.like(productRoot.get("description"), "%" + keyword + "%")
+                    ));
+                }
+
+                // Price From Predicate
+                if (StringUtils.isNotEmpty(priceFrom)) {
+                    predicates.add(criteriaBuilder.greaterThanOrEqualTo(productRoot.get("price"), Double.parseDouble(priceFrom)));
+                }
+
+                // Price To Predicate
+                if (StringUtils.isNotEmpty(priceTo)) {
+                    predicates.add(criteriaBuilder.lessThanOrEqualTo(productRoot.get("price"), Double.parseDouble(priceTo)));
+                    System.out.println("vào chưa 4");
+                }
+
+                // Brand Predicate
+//                if (!CollectionUtils.isEmpty(brandIds) ) {
+//                    List<Predicate> brandIdPredicateList = new ArrayList<>();
+//                    for (String brandId : brandIds) {
+//                        brandIdPredicateList.add(criteriaBuilder.equal(brandRoot.get("brandId"), Long.parseLong(brandId)));
+//                    }
+//                    predicates.add(criteriaBuilder.or(brandIdPredicateList.toArray(new Predicate[brandIdPredicateList.size()])));
+//                }
+            }
+            return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
         }
-        return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
-      }
     };
+}
+
+  @Override
+  public List<ProductEntity> findByBrand(Long brandId) {
+
+    return repo.findByBrand(brandId);
   }
 
 }
