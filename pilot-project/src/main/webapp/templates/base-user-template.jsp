@@ -7,6 +7,9 @@
 <html>
 <head>
 	<tiles:insertAttribute name="head"/>
+	<title>
+		<tiles:insertAttribute name="title"/>
+	</title>
 	<!-- Local Import CSS START -->
 	<tiles:importAttribute name="stylesheets" ignore="true"/>
 	<c:forEach var="css" items="${stylesheets}">

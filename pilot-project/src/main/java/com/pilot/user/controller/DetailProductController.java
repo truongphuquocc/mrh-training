@@ -30,6 +30,7 @@ public class DetailProductController {
     ProductEntity productEntity = productService.findProductById(productId);
     if (productEntity != null && productId != null) {
       model.addAttribute("productDetail", productEntity);
+      model.addAttribute("specificPageTitle", productEntity.getProductName());
     }
     return "tiles.detailproduct";
   }

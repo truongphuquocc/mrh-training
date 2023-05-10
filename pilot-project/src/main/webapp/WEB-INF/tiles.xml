@@ -65,7 +65,7 @@
 	<!-- User Page START -->
 	<definition name="tiles.homepage"
 		extends="base-user.template">
-		<put-attribute name="title" value="Brand Management" />
+		<put-attribute name="title" value="Điện thoại, smartphone chính hãng giá rẻ" />
 		<put-attribute name="discount-in-day"
 			value="/main-content-fragments/homepage.jsp" />
 		<put-list-attribute name="stylesheets"
@@ -77,6 +77,8 @@
 			<add-attribute value="/scripts/user.js" />
 		</put-list-attribute>
 	</definition>
+	<!-- User Page END -->
+	<!-- product of brand Page START -->
 	<definition name="tiles.productofbrand"
 		extends="base-user.template">
 		<put-attribute name="title" value="Brand Management" />
@@ -91,9 +93,11 @@
 			<add-attribute value="/scripts/ProductOfBrand.js" />
 		</put-list-attribute>
 	</definition>
+	<!-- product of brand Page END -->
+	<!-- Detail product Page START -->
 	<definition name="tiles.detailproduct"
 		extends="base-user.template">
-		<put-attribute name="title" value="Brand Management" />
+		<put-attribute name="title" value="${productDetail.productName}" />
 		<put-attribute name="discount-in-day"
 			value="/main-content-fragments/detail-product.jsp" />
 		<put-list-attribute name="stylesheets"
@@ -105,8 +109,8 @@
 			<add-attribute value="/scripts/detail-product.js" />
 		</put-list-attribute>
 	</definition>
-	<!-- User Page END -->
-	<!-- User Page START -->
+	<!-- Detailproduct Page END -->
+	<!-- Brand Page START -->
 	<definition name="tiles.brand" extends="base.template">
 		<put-attribute name="title" value="Brand Management" />
 		<put-attribute name="main-content"
@@ -120,7 +124,7 @@
 			<add-attribute value="/scripts/brand.js" />
 		</put-list-attribute>
 	</definition>
-	<!-- User Page END -->
+	<!-- Brand Page END -->
 	<!-- Product Page START -->
 	<definition name="tiles.product" extends="base.template">
 		<put-attribute name="title" value="Product Management" />

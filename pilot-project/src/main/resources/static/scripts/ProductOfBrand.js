@@ -7,15 +7,16 @@ const TEMPLATE_PRODUCT = "<li class='product-info'>"
 	+ "</div>"
 	+ "</a>"
 	+ "</li>"
+
 var ProductOfBrand = (function() {
 	return function() {
 		var _self = this;
 		_self.$productInfo = $('.productInfo');
+		var url = new URL(window.location.href)
+		var brandId2 = url.searchParams.get("brandid").toString()
 
 		_self.getProduct = function() {
 			// Search Brand by keyword
-			var url = new URL(window.location.href)
-			console.log(url + "url")
 			let searchData = {
 				brandId: url.searchParams.get("brandid").toString()
 			};
@@ -34,12 +35,43 @@ var ProductOfBrand = (function() {
 			});
 		};
 
+		_self.searchBrands = function() {
+			// Search Brand by keyword
+			let searchData = {
+				keyword: $('#keyword').val(),
+			};
+
+			$.ajax({
+				url: 'home/api/getall',
+				type: 'POST',
+				dataType: 'json',
+				data: JSON.stringify(searchData),
+				contentType: 'application/json',
+				success: function(responseData) {
+					if (responseData.responseCode == 100) {
+						_self.renderTitle(responseData.data);
+					}
+				},
+			});
+		};
+
 		_self.drawProductContent = function(data) {
 			$.each(data.productsListUser2, function(key, value) {
+				const BRAND_NAME = value.brand.brandName
+
 				_self.$productInfo.append(_self.templateList.productInfoRowTemplate(value));
 			});
 
 		};
+
+		_self.renderTitle = function(data) {
+			// Render title
+			$.each(data.brandsList, function(key, value) {
+				if (Number(brandId2) === value.brandId) {
+					$(document).attr("title", `Điện thoại ${value.brandName} giảm từ 14-27% chính hãng, giá rẻ`);
+				}
+			});
+		}
 
 
 		_self.templateList = {
@@ -47,6 +79,7 @@ var ProductOfBrand = (function() {
 		};
 		_self.initialize = function() {
 			_self.getProduct();
+			_self.searchBrands();
 		};
 	};
 })();

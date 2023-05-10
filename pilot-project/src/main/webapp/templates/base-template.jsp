@@ -12,6 +12,9 @@
 	<c:forEach var="css" items="${stylesheets}">
 		<link rel="stylesheet" type="text/css" href="<c:url value='${css}'/>">
 	</c:forEach>
+	<title>
+		<tiles:insertAttribute name="title"/>
+	</title>
 	<!-- Local Import CSS END -->
 </head>
 <body>
