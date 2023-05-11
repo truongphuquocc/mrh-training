@@ -57,8 +57,7 @@ var ProductOfBrand = (function() {
 
 		_self.drawProductContent = function(data) {
 			$.each(data.productsListUser2, function(key, value) {
-				const BRAND_NAME = value.brand.brandName
-
+				value.price = value.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })
 				_self.$productInfo.append(_self.templateList.productInfoRowTemplate(value));
 			});
 

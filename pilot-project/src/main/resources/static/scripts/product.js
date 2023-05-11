@@ -51,6 +51,7 @@ var Product = (function() {
 
 			// Render table content
 			$.each(data.productsList, function(key, value) {
+				value.price = value.price.toLocaleString('vi-VN', {style : 'currency', currency : 'VND'})
 				_self.$productInfoTableBody.append(
 					_self.templateList.productInfoRowTemplate(value)
 				);

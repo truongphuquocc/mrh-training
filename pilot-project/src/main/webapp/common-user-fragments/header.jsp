@@ -1,18 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<div class="container-fluid">
-	<div class="top-banner row">
-		<img class="mx-auto" src="images/dmx/Tragop-1200-44-1200x44-1.png" />
-	</div>
-</div>
-
 <header>
 	<div class="container">
 		<div class="row">
 			<div class="left-area float-left d-flex">
 				<div class="logo">
-					<a class="logo" title="Về trang chủ DienmayXanh.com" href="/">
+					<a class="logo" title="Về trang chủ DienmayXanh.com" href="/home">
 						<i class="icon-dmx dmx-logo"></i>
 					</a>
 				</div>
@@ -76,12 +70,12 @@
 				</div>
 			</div>
 			<div class="right-area float-right">
-				<a href="/kinh-nghiem-hay" class="refer-link">Kinh nghiệm hay <span>&amp;
+				<a href="#" class="refer-link">Kinh nghiệm hay <span>&amp;
 						Tin khuyến mãi <label class="arr-down"></label>
-				</span></a> <a href="/kinh-nghiem-hay" class="refer-link">1800.1061 <span>&amp;
-						Tổng đài miễn phí </span></a> <a href="/kinh-nghiem-hay"
+				</span></a> <a href="#" class="refer-link">1800.1061 <span>&amp;
+						Tổng đài miễn phí </span></a> <a href="#"
 					class="refer-link one-line"><i class="fas fa-shopping-cart"></i></a>
-				<a href="/kinh-nghiem-hay" class="refer-link one-line">Lịch sử
+				<a href="#" class="refer-link one-line">Lịch sử
 					mua hàng</a>
 			</div>
 		</div>

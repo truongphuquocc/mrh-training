@@ -106,7 +106,7 @@
 		</put-list-attribute>
 		<put-list-attribute name="javascripts"
 			inherit="true">
-			<add-attribute value="/scripts/detail-product.js" />
+			<add-attribute value="/scripts/detailproduct.js" />
 		</put-list-attribute>
 	</definition>
 	<!-- Detailproduct Page END -->

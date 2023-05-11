@@ -15,7 +15,7 @@ const TEMPLATE_PRODUCT = "<li class='product-info'>"
 	+ "<div class='prod-price'> <%= price %>"
 	+ "</div>"
 	+ "</li>"
-var Brand = (function() {
+var HomePage = (function() {
 	return function() {
 		var _self = this;
 		_self.currentPageNumber = 1;
@@ -29,6 +29,7 @@ var Brand = (function() {
 		var priceForm = [];
 		let min = 300000;
 		let max = 42000000;
+		var countProduct = 0;
 
 		const calcLeftPosition = (value) => (100 / (42000000 - 300000)) * (value - 300000);
 		var rangeBalance;
@@ -63,7 +64,6 @@ var Brand = (function() {
 				priceTo: max.toString(),
 				currentPage: Number(_self.currentPageNumber),
 			};
-
 			$.ajax({
 				url: 'home/api/getproduct',
 				type: 'POST',
@@ -98,7 +98,12 @@ var Brand = (function() {
 				brandForm.forEach(item => brandIdFilter.push(item.value))
 				priceForm.forEach(item => priceFilter.push(item.value))
 			}
+
 			$(":checkbox").on("click", showValues);
+
+			$(":input[name='brand']").on('click', function() {
+				_self.getProduct();
+			});
 		}
 
 		_self.drawProductContent = function(data) {
@@ -106,8 +111,10 @@ var Brand = (function() {
 			_self.$productInfo.empty();
 
 			$.each(data.productsListUser, function(key, value) {
-				_self.$productInfo.append(_self.templateList.productInfoRowTemplate(value));
+				value.price = value.price.toLocaleString('vi-VN', {style : 'currency', currency : 'VND'})
+				_self.$productInfo.append(_self.templateList.productInfoRowTemplate(value));		
 			});
+			
 
 			// Render paginator
 			let paginationInfo = data.paginationInfo;
@@ -122,6 +129,7 @@ var Brand = (function() {
 				_self.currentPageNumber = $(this).attr("data-index");
 				_self.getProduct();
 			});
+
 
 			$(".btn-filter-readmore").on('click', function() {
 				_self.getProduct();
@@ -171,7 +179,8 @@ var Brand = (function() {
 				}
 			});
 
-			$(":checkbox").on('click', function() {
+			//Hide search range price product
+			$(":input[name='price']").on('click', function() {
 				if (($(".range-price").hasClass("d-none")) === false) {
 					$(".range-price").addClass("d-none")
 				}
@@ -179,7 +188,9 @@ var Brand = (function() {
 				max = '';
 			});
 
-			$(".range-toggle").on('click', function() {
+			//Show hide search range price product
+			$(".range-toggle").on('click', function(e) {
+				e.preventDefault();
 				priceFilter = []
 				if (($(".range-price").hasClass("d-none")) === true) {
 					$(".range-price").removeClass("d-none")
@@ -190,23 +201,26 @@ var Brand = (function() {
 				$(":input[name='price']").prop('checked', false)
 			})
 		};
+
 		_self.templateList = {
 			brandInfoRowTemplate: _.template(TEMPLATE_BRAND),
 			paginatorTemplate: _.template(TEMPLATE_PAGINATOR),
 			productInfoRowTemplate: _.template(TEMPLATE_PRODUCT),
 			brandSearch: _.template(BRANCH_SEARCH),
 		};
+
 		_self.initialize = function() {
 			// Show brands list when opening page
 			_self.searchBrands();
+			//Show product list when opeing page
 			_self.getProduct();
 			_self.bindEvent();
 		};
 	};
 })();
-(function(brand) {
+(function(homePage) {
 	$(document).ready(function() {
-		brand.initialize();
+		homePage.initialize();
 	});
-})(new Brand());
+})(new HomePage());
 
