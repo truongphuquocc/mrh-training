@@ -29,4 +29,8 @@ public interface ProductRepository
   @Transactional
   @Query(value = "SELECT * FROM PRODUCT P WHERE P.BRAND_ID = :brandId",nativeQuery = true)
   List<ProductEntity> findByBrand(@Param("brandId") Long brandId);
+  
+  @Transactional
+  @Query(value = "SELECT * FROM PRODUCT P LEFT JOIN BRAND B ON P.BRAND_ID = B.BRAND_ID WHERE P.PRODUCT_NAME LIKE %:keyword% OR B.BRAND_NAME LIKE %:keyword%",nativeQuery = true)
+  List<ProductEntity> findByProductOrBrandName(@Param("keyword") String keyword);
 }

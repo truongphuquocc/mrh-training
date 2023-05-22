@@ -3,6 +3,7 @@
  */
 package com.pilot.service.impl;
 
+import java.io.Console;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -180,7 +181,7 @@ public class ProductServiceImpl implements ProductService {
     }
     return new ResponseDataModel(responseCode, responseMsg, responseMap);
   }
-  
+
   @Override
   public ResponseDataModel searchWithPagerUser(Map<String, Object> searchDataMap) {
     int responseCode = Constants.RESULT_CD_FAIL;
@@ -188,10 +189,20 @@ public class ProductServiceImpl implements ProductService {
     Map<String, Object> responseMap = new HashMap<>();
     try {
       int pageNumber = (int) searchDataMap.get("currentPage");
+      int sortByNumber = (int) searchDataMap.get("sortBy");
+      int count = 0;
       Sort sortInfo = Sort.by(Sort.Direction.DESC, "productId");
+      if (sortByNumber == 1) {
+       sortInfo = Sort.by(Sort.Direction.DESC, "price");
+      }
+      else if (sortByNumber == 2){
+        sortInfo = Sort.by(Sort.Direction.ASC, "price");
+      }
+      count = productRepo.findAll(productDao.getSearchCriteria(searchDataMap)).size();
       Pageable pageable = PageRequest.of(pageNumber - 1, Constants.PAGE_SIZE_PRODUCT, sortInfo);
       Page<ProductEntity> productEntitiesPage =
           productRepo.findAll(productDao.getSearchCriteria(searchDataMap), pageable);
+      responseMap.put("count", count);
       responseMap.put("productsListUser", productEntitiesPage.getContent());
       responseMap.put("paginationInfo",
           new PagerModel(pageNumber, productEntitiesPage.getTotalPages()));
@@ -211,9 +222,30 @@ public class ProductServiceImpl implements ProductService {
     Map<String, Object> responseMap = new HashMap<>();
     try {
       long brandId = Long.parseLong(searchDataMap.get("brandId").toString());
-      List<ProductEntity> productEntitiesPage =
-          productDao.findByBrand(brandId);
+      List<ProductEntity> productEntitiesPage = productDao.findByBrand(brandId);
       responseMap.put("productsListUser2", productEntitiesPage);
+      responseCode = Constants.RESULT_CD_SUCCESS;
+    } catch (Exception e) {
+      responseMsg = e.getMessage();
+      LOGGER.error("Error when get all product: {}", e);
+    }
+    return new ResponseDataModel(responseCode, responseMsg, responseMap);
+  }
+
+  @Override
+  public ResponseDataModel findByProductOrBrandName(Map<String, Object> searchDataMap) {
+
+    int responseCode = Constants.RESULT_CD_FAIL;
+    String responseMsg = StringUtils.EMPTY;
+    Map<String, Object> responseMap = new HashMap<>();
+    try {
+      String keyword = (String) searchDataMap.get("keyword");
+      System.out.println("11111111111111:"+keyword);
+      List<ProductEntity> productEntitiesPage = null;
+      if(keyword != "") {
+        productEntitiesPage = productDao.findByProductOrBrandName(keyword);
+      }
+      responseMap.put("productsListLiveSearch", productEntitiesPage);
       responseCode = Constants.RESULT_CD_SUCCESS;
     } catch (Exception e) {
       responseMsg = e.getMessage();

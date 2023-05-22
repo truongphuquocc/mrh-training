@@ -180,6 +180,89 @@ header .search-area input {
     padding-top: 5px;
     margin-left: 15px;
 }
+
+#search-result {
+    position: absolute;
+    top: 33px;
+    z-index: 11;
+    width: 400px;
+    left: 333px;
+    display: none;
+}
+
+#search-result .suggest_search {
+	padding: 0px;
+    position: relative;
+    background: #fff;
+    top: 7px;
+    z-index: 100000;
+    left: 2px;
+    right: 2px;
+    border-radius: 10px;
+    box-shadow: 0 1px 8px rgba(0,0,0,.3);
+}
+
+#search-result .suggest_search li.ttitle {
+    position: relative;
+}
+
+#search-result .suggest_search li {
+    display: block;
+    overflow: hidden;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.product_suggest.selected {
+/* 	background-color: #f9f9f9; */
+	background-color: red;
+}
+
+#search-result .suggest_search li .viewed {
+    background: #d5d5d5;
+    font-size: 13px;
+    color: #666;
+    font-weight: 400;
+    padding: 10px;
+    margin: -15px -10px;
+}
+
+#search-result .suggest_search li a {
+    color: #3b7adb;
+    font-size: 12px;
+    margin: 0 5px 0;
+    display: block;
+}
+#search-result .suggest_search li.product_suggest a .item-img {
+    float: left;
+    width: 60px;
+    height: auto;
+    margin: 0 6px 0 0;
+}
+#search-result .suggest_search li.product_suggest a .item-img img {
+    width: 100%;
+}
+#search-result .suggest_search li.product_suggest a .item-info {
+    float: left;
+    width: calc(100% - 66px);
+}
+#search-result .suggest_search li.product_suggest a h3 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    color: #333;
+    font-size: 14px;
+    overflow: hidden;
+}
+#search-result .suggest_search li.product_suggest a .price {
+    font-size: 14px;
+    color: #e83a45;
+    float: none;
+    font-weight: bold;
+    display: inline-block;
+    vertical-align: middle;
+}
+
 header .refer-link {
     float: right;
     height: 34px;
@@ -278,6 +361,9 @@ nav {
 .product-info {
     font-size: 0.875rem;
     position: relative;
+}
+.product-info a {
+	color: #212529;
 }
 .product-info img {
     max-width: 100%;

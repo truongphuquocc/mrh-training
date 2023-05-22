@@ -21,22 +21,22 @@ import com.pilot.service.ProductService;
  */
 
 @Controller
-@RequestMapping(value = {"/productofbrand"})
+@RequestMapping(value = {"/dtdd"})
 public class ProductOfBrandController {
 
   @Autowired
   ProductService productService;
   
-  @GetMapping()
+  @GetMapping(value = "/{brandName}")
   public String initPage() {
   
     return "tiles.productofbrand";
   }
   
-  @PostMapping("/api/getall")
+  @PostMapping("/{brandName}")
   @ResponseBody
   public ResponseDataModel getAll(@RequestBody Map<String, Object> searchDataMap) {
 
-    return productService.findByBrand2(searchDataMap);
+    return productService.searchWithPagerUser(searchDataMap);
   }
 }

@@ -31,4 +31,6 @@ public interface ProductService {
   ResponseDataModel searchWithPagerUser(Map<String, Object> searchDataMap);
   
   ResponseDataModel findByBrand2(Map<String, Object> searchDataMap);
+  
+  ResponseDataModel findByProductOrBrandName(Map<String, Object> searchDataMap);
 }

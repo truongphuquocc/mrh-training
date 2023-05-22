@@ -90,7 +90,7 @@
 		</put-list-attribute>
 		<put-list-attribute name="javascripts"
 			inherit="true">
-			<add-attribute value="/scripts/ProductOfBrand.js" />
+			<add-attribute value="/scripts/productofbrand.js" />
 		</put-list-attribute>
 	</definition>
 	<!-- product of brand Page END -->

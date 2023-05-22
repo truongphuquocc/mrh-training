@@ -22,7 +22,7 @@ import com.pilot.service.ProductService;
  * @since 25 thg 4, 2023
  */
 @Controller
-@RequestMapping(value = {"/home"})
+@RequestMapping(value = {"/dtdd"})
 public class UserController {
   
   @Autowired
@@ -46,6 +46,12 @@ public class UserController {
   @ResponseBody
   public ResponseDataModel getProduct(@RequestBody Map<String, Object> searchDataMap) {
     return productService.searchWithPagerUser(searchDataMap);
+  }
+  
+  @PostMapping("/api/LiveSearch")
+  @ResponseBody
+  public ResponseDataModel findByProductOrBrandName(@RequestBody Map<String, Object> searchDataMap) {
+    return productService.findByProductOrBrandName(searchDataMap);
   }
   
 //  @PostMapping(value = {"/productofbrand/{brandId}"})

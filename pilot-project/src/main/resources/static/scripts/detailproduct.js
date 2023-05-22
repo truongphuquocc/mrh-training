@@ -11,6 +11,5 @@ var Detail = (function() {
 }());
 (function(detail) {
 	$(document).ready(function() {
-		detail.initialize();
 	});
 })(new Detail());

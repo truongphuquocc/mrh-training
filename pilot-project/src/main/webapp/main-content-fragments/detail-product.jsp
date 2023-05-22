@@ -20,7 +20,7 @@
 				<div class="panel">
 					<div class="box-main ">
 						<div class="box_left ">
-							<a href="#"><img src="${productDetail.image}" alt=""></a>
+							<a href="#"><img src="/${productDetail.image}" alt=""></a>
 						</div>
 						<div class="box_right ">
 							<div class="box-price d-flex justify-content-between">

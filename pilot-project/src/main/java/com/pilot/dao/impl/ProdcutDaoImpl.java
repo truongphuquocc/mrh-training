@@ -66,6 +66,7 @@ public class ProdcutDaoImpl implements ProductDao {
           String keyword = (String) searchConditionsMap.get("keyword");
           String priceFrom = (String) searchConditionsMap.get("priceFrom");
           String priceTo = (String) searchConditionsMap.get("priceTo");
+          String brandName = (String) searchConditionsMap.get("brandName");
           List<String> brandIds = (List<String>) searchConditionsMap.get("brandIdFilter");
           List<String> prices = (List<String>) searchConditionsMap.get("priceFilter");
           String[] priceSplit;
@@ -73,6 +74,7 @@ public class ProdcutDaoImpl implements ProductDao {
 
           // Keyword Predicate
           if (StringUtils.isNotEmpty(keyword)) {
+            System.out.println("4444");
             predicates.add(criteriaBuilder.or(
                 criteriaBuilder.like(productRoot.get("productName"), "%" + keyword + "%"),
                 criteriaBuilder.like(productRoot.get("description"), "%" + keyword + "%")));
@@ -80,35 +82,46 @@ public class ProdcutDaoImpl implements ProductDao {
 
           // Price From Predicate
           if (StringUtils.isNotEmpty(priceFrom)) {
+            System.out.println("5555");
             predicates.add(criteriaBuilder.greaterThanOrEqualTo(productRoot.get("price"),
                 Double.parseDouble(priceFrom)));
           }
 
           // Price To Predicate
           if (StringUtils.isNotEmpty(priceTo)) {
+            System.out.println("5556666");
             predicates.add(criteriaBuilder.lessThanOrEqualTo(productRoot.get("price"),
                 Double.parseDouble(priceTo)));
           }
 
           // Brand Predicate
           if (!CollectionUtils.isEmpty(brandIds)) {
+            System.out.println("33333");
             List<Predicate> brandIdPredicateList = new ArrayList<>();
-            for (String brandId : brandIds) {
+            for (String value : brandIds) {
               brandIdPredicateList
-                  .add(criteriaBuilder.equal(brandRoot.get("brandId"), Long.parseLong(brandId)));
+                  .add(criteriaBuilder.equal(brandRoot.get("brandId"), Long.parseLong(value)));
             }
             predicates.add(criteriaBuilder
                 .or(brandIdPredicateList.toArray(new Predicate[brandIdPredicateList.size()])));
           }
 
+          if (StringUtils.isNotEmpty(brandName)) {
+            predicates
+                .add(criteriaBuilder.equal(brandRoot.get("brandName"), brandName));
+            predicates
+                .add(criteriaBuilder.or(predicates.toArray(new Predicate[predicates.size()])));
+          }
+
           if (!CollectionUtils.isEmpty(prices)) {
             List<Predicate> pricePredicateList = new ArrayList<>();
             for (String price : prices) {
-                priceSplit = price.split("-");
-                pricePredicateList.add(criteriaBuilder.between(productRoot.get("price"),
-                    Double.parseDouble(priceSplit[0]), Double.parseDouble(priceSplit[1])));
+              priceSplit = price.split("-");
+              pricePredicateList.add(criteriaBuilder.between(productRoot.get("price"),
+                  Double.parseDouble(priceSplit[0]), Double.parseDouble(priceSplit[1])));
             }
-            predicates.add(criteriaBuilder.or(pricePredicateList.toArray(new Predicate[pricePredicateList.size()])));
+            predicates.add(criteriaBuilder
+                .or(pricePredicateList.toArray(new Predicate[pricePredicateList.size()])));
           }
         }
         return criteriaBuilder.and(predicates.toArray(new Predicate[predicates.size()]));
@@ -120,6 +133,11 @@ public class ProdcutDaoImpl implements ProductDao {
   public List<ProductEntity> findByBrand(Long brandId) {
 
     return repo.findByBrand(brandId);
+  }
+
+  @Override
+  public List<ProductEntity> findByProductOrBrandName(String keyword) {
+    return repo.findByProductOrBrandName(keyword);
   }
 
 }

@@ -3,10 +3,10 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <header>
 	<div class="container">
-		<div class="row">
+		<div class="row" style="position: relative;">
 			<div class="left-area float-left d-flex">
 				<div class="logo">
-					<a class="logo" title="Về trang chủ DienmayXanh.com" href="/home">
+					<a class="logo" title="Về trang chủ DienmayXanh.com" href="/dtdd">
 						<i class="icon-dmx dmx-logo"></i>
 					</a>
 				</div>
@@ -58,25 +58,33 @@
 					</div>
 				</div>
 				<div class="search-area">
-					<form class="search-form">
-						<div class="input-group">
-							<input type="text" class="form-control"
-								placeholder="Bạn tìm gì...">
-							<div class="input-group-append">
-								<span class="input-group-text"><i class="fas fa-search"></i></span>
-							</div>
+					<div class="input-group">
+						<input id="keyword" type="text" class="form-control"
+							placeholder="Bạn tìm gì...">
+						<div class="input-group-append">
+							<button class="input-group-text" id="clear" type="button">
+								<i class="fa-solid fa-xmark"></i>
+							</button>
+							<button class="input-group-text" id="searchBrandBtn"
+								type="button">
+								<i class="fas fa-search"></i>
+							</button>
 						</div>
-					</form>
+					</div>
+					<div id="search-result">
+						<ul class="suggest_search" id="active-result">
+							
+						</ul>
+					</div>
 				</div>
 			</div>
 			<div class="right-area float-right">
 				<a href="#" class="refer-link">Kinh nghiệm hay <span>&amp;
 						Tin khuyến mãi <label class="arr-down"></label>
 				</span></a> <a href="#" class="refer-link">1800.1061 <span>&amp;
-						Tổng đài miễn phí </span></a> <a href="#"
-					class="refer-link one-line"><i class="fas fa-shopping-cart"></i></a>
-				<a href="#" class="refer-link one-line">Lịch sử
-					mua hàng</a>
+						Tổng đài miễn phí </span></a> <a href="#" class="refer-link one-line"><i
+					class="fas fa-shopping-cart"></i></a> <a href="#"
+					class="refer-link one-line">Lịch sử mua hàng</a>
 			</div>
 		</div>
 	</div>

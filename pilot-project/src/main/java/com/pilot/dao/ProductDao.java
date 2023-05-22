@@ -13,7 +13,9 @@ public interface ProductDao {
   ProductEntity findByProductId(Long productId);
   
   List<ProductEntity> findByBrand(Long brandId);
-
+  
+  List<ProductEntity> findByProductOrBrandName(String keyword);
+    
   ProductEntity findByProductName(String productName);
 
   ProductEntity findByProductNameAndProductIdNot(String productName, Long productId);
