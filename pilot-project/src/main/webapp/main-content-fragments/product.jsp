@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<div class="container mt-3">
+<div class="mt-3">
 	<div class="main-content">
 		<section>
 			<h2>Product</h2>
@@ -9,13 +9,14 @@
 		<div class="box box-success">
 			<div class="box-body">
 				<div class="form-row">
-					<div class="form-group col-3">
+					<div class="form-group col-6 col-md-3">
 						<div class="input-group">
 							<div class="input-group-append">
-								<label for="" class="input-group-text">Price from</label>
+								<label for="" class="input-group-text label-price-select">Price
+									from</label>
 							</div>
 							<select class="custom-select mr-sm-2" id="priceFrom">
-								<option value="" selected>Choose Price...</option>
+								<option value="" selected>Price From</option>
 								<option value="5000000">5.000.000</option>
 								<option value="10000000">10.000.000</option>
 								<option value="20000000">20.000.000</option>
@@ -23,13 +24,14 @@
 							</select>
 						</div>
 					</div>
-					<div class="form-group col-3">
+					<div class="form-group col-6 col-md-3">
 						<div class="input-group">
 							<div class="input-group-append">
-								<label for="" class="input-group-text">Price to</label>
+								<label for="" class="input-group-text label-price-select">Price
+									to</label>
 							</div>
 							<select class="custom-select mr-sm-2" id="priceTo">
-								<option value="" selected>Choose Price...</option>
+								<option value="" selected>Price To</option>
 								<option value="10000000">10.000.000</option>
 								<option value="15000000">15.000.000</option>
 								<option value="20000000">20.000.000</option>
@@ -38,23 +40,25 @@
 							</select>
 						</div>
 					</div>
-					<div class="input-group d-flex col-6">
-						<input type="text" class="form-control" id="keyword"
-							placeholder="Product name, description">
-						<div class="d-block">
-							<button class="btn btn-primary" id="searchProductBtn"
-								type="button">
-								<i class="fa-solid fa-magnifying-glass"></i>
-							</button>
+					<div class="input-group d-flex col-sm-12 col-md-6">
+						<div class="input-group mb-1">
+							<input type="text" class="form-control fieldset" id="keyword"
+								placeholder="Brand Name, Description"> <i
+								class="fa-solid fa-xmark clear-icon" id="clearSearchFieldBtn"></i>
+							<div class="input-group-append">
+								<button class="btn btn-primary" id="searchProductBtn"
+									type="button">
+									<i class="fa-solid fa-magnifying-glass"></i>
+								</button>
+
+							</div>
+						</div>
+						<div class="input-group mb-1 justify-content-end">
 							<button class="btn btn-success" id="addProductInfoModal"
 								type="button">
-								<i class="fa-solid fa-plus"></i> Add Product
-							</button>
-							<button class="btn btn-secondary" id="clearSearchFieldBtn">
-								<i class="fas fa-times"></i>&nbsp;Clear
+								<i class="fa-solid fa-plus"></i> Add product
 							</button>
 						</div>
-
 					</div>
 				</div>
 				<table class="table table-bordered" id="productInfoTable">
@@ -143,8 +147,8 @@
 						</label>
 						<div class="col-sm-9">
 							<div class="datepicker date input-group">
-								<input type="text" placeholder="Opening For Sale" name="saleDate"
-									class="form-control" id="saleDate">
+								<input type="text" placeholder="Opening For Sale"
+									name="saleDate" class="form-control" id="saleDate">
 								<div class="input-group-append">
 									<span class="input-group-text"><i class="fa fa-calendar"></i></span>
 								</div>

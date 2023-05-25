@@ -200,6 +200,7 @@ var HomePage = (function() {
 			$(".countProduct").html(data)
 		}
 
+		//debounce
 		let debounce = (func, delay) => {
 			let timerId;
 			return function() {
@@ -208,6 +209,7 @@ var HomePage = (function() {
 			};
 		};
 
+		//Debounce search
 		_self.debounceLiveSearch = function() {
 
 			let delay = 500;
@@ -253,85 +255,6 @@ var HomePage = (function() {
 				_self.currentPageNumber = 1;
 				_self.getProduct();
 			});
-
-			//var ul = $('#active-result');
-			var liSelected;
-			var index = -1;
-
-			$(document).on('keyup', function() {
-				if ($(".product_suggest").hasClass("selected"))
-					$("#keyword").val($(".product_suggest.selected h3").text())
-			})
-
-
-			document.addEventListener('keyup', function(event) {
-				var len = $('#active-result .product_suggest').length - 1;
-				/*				if ($(".product_suggest").hasClass("selected")) {
-									let $db = $(".product_suggest.selected").prev()
-									console.log($db)
-									var contextsg = $(".product_suggest.selected h3").text();
-									$("#keyword").val(contextsg)
-									console.log($(".product_suggest.selected h3").text())
-								}*/
-
-				//var contextsg = $(".product_suggest.selected h3").text();
-
-				if (event.which === 40) {
-					index++;
-					//down 
-					if (liSelected) {
-						removeClass(liSelected, 'selected');
-						next = $('#active-result .product_suggest')[index];
-						if (typeof next !== undefined && index <= len) {
-							liSelected = next;
-						} else {
-							index = 0;
-							liSelected = $('#active-result .product_suggest')[0];
-						}
-						addClass(liSelected, 'selected');
-
-					} else {
-						index = 0;
-						liSelected = $('#active-result .product_suggest')[0];
-						addClass(liSelected, 'selected');
-					}
-				} else if (event.which === 38) {
-					//up
-					if (liSelected) {
-						removeClass(liSelected, 'selected');
-						index--;
-						console.log(index);
-						next = $('#active-result .product_suggest')[index];
-						if (typeof next !== undefined && index >= 0) {
-							liSelected = next;
-						} else {
-							index = len;
-							liSelected = $('#active-result .product_suggest')[len];
-						}
-						addClass(liSelected, 'selected');
-					} else {
-						index = 0;
-						liSelected = $('#active-result .product_suggest')[len];
-						addClass(liSelected, 'selected');
-					}
-				}
-			}, false);
-
-			function removeClass(el, className) {
-				if (el.classList) {
-					el.classList.remove(className);
-				} else {
-					el.className = el.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
-				}
-			};
-
-			function addClass(el, className) {
-				if (el.classList) {
-					el.classList.add(className);
-				} else {
-					el.className += ' ' + className;
-				}
-			};
 
 			//show result search product when click readmore button
 			$(".btn-filter-readmore").on('click', function() {
@@ -410,6 +333,13 @@ var HomePage = (function() {
 				minStr = '';
 				maxStr = '';
 			});
+
+
+			$('.menu-toggle').click(function() {
+				$('.right-area').toggleClass('active');
+				console.log("123")
+			})
+
 
 			//Show hide search range price product
 			$(".range-toggle").on('click', function(e) {

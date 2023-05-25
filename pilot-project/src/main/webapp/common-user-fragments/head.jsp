@@ -6,6 +6,7 @@
 <link rel="icon" href="<c:url value='/images/common/favicon.ico'/>"
 	type="image/gif" sizes="16x16">
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet"
 	href="<c:url value='/plugins/bootstrap/css/bootstrap.min.css'/>">
 <link

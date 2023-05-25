@@ -11,9 +11,9 @@ $(document).ready(function() {
 
 	// Add "active" class for link in Header
 	$(document).ready(function() {
-		$(".nav-item a")
+		$("li a")
 			.on("click", function() {
-				$(".nav-item.active").removeClass("active");
+				$("li.active").removeClass("active");
 				$(this).parent().addClass("active");
 			})
 			.filter(function() {

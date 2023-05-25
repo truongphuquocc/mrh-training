@@ -1,0 +1,125 @@
+/* PC */
+@media ( min-width : 1024px) {
+}
+
+/* tablet && mobile */
+@media ( max-width : 1023px) {
+}
+
+/* tablet */
+@media ( min-width : 740px) and (max-width: 1023px) {
+	.products-list li {
+		width: calc(100%/ 4);
+	}
+	.menu-toggle {
+		display: block;
+		position: relative;
+		top: -82px;
+	}
+	.menu-toggle i {
+		font-size: 35px!important;
+	}
+	.icon-dmx {
+		height: 32px !important;
+		width: 32px !important;
+		margin-left: 13px;
+	}
+}
+
+/* mobile */
+@media ( max-width : 739px) {
+	header {
+		height: 100px
+	}
+	header .refer-link.one-line i {
+		font-size: 31px;
+	}
+	.search-area {
+		padding: 0 10px 0 11px;
+		width: 100%;
+	}
+	#keyword {
+		margin: 0 !important;
+	}
+	.discount-in-day {
+		padding: 0 5px 0 5px;
+	}
+	.menu-toggle {
+		display: block;
+		position: relative;
+		top: -82px;
+	}
+	.menu-toggle i {
+		font-size: 35px;
+	}
+	header .right-area {
+		position: absolute;
+		width: 100%;
+		height: calc(100vh - 50px);
+		background: #FFFFFF;
+		top: 50px;
+		left: -100%;
+		transition: 0.5s;
+		z-index: 10;
+	}
+	header .right-area.active {
+		left: 0;
+	}
+	header .right-area a {
+		display: block;
+		text-align: center;
+	}
+	.right-area a {
+		color: #288ad6 !important;
+	}
+	.right-area span {
+		color: #333 !important;
+		font-size: 14px !important;
+		font-weight: 400 !important;
+	}
+	.right-area.float-right.active {
+		display: flex;
+		flex-direction: column !important;
+	}
+	.refer-link {
+		display: flex !important;
+		justify-content: left !important;
+		align-items: center;
+	}
+	.brandInfo {
+		display: flex;
+		overflow-x: auto;
+		margin-left: 0px !important;
+	}
+	.brandInfo::-webkit-scrollbar {
+		display: none;
+	}
+	.brandInfo .btn-dropdown {
+		min-width: 125px;
+		border-radius: 5px;
+		border: 1px solid #bdb9b9;
+		padding: 5px;
+		background-color: rgb(255, 255, 255);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.grid-dropdown-item {
+		grid-template-columns: repeat(auto-fill, minmax(125px, 1fr));
+		grid-gap: 5px;
+	}
+	.dropdown .dropdown-menu {
+		width: 387px !important;
+		left: 3px !important;
+	}
+	.brandtips_wrap {
+		width: 95% !important;
+	}
+	.grid-dropdown-item {
+		grid-template-columns: repeat(auto-fill, minmax(118px, 1fr));
+		margin-left: -5px;
+	}
+	.products-list li {
+		width: calc(100%/ 2);
+	}
+}

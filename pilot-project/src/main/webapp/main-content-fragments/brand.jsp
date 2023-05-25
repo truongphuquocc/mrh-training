@@ -1,29 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<div class="container mt-3">
+<div class="mt-3">
 	<div class="main-content">
 		<section>
 			<h2>Brand</h2>
 		</section>
 		<div class="box box-success">
 			<div class="box-body">
-				<div class="input-group mb-3">
-					<input type="text" class="form-control" id="keyword"
-						placeholder="Brand Name, Description">
+				<div class="input-group mb-1">
+					<input type="text" class="form-control fieldset" id="keyword"
+						placeholder="Brand Name, Description"> <i
+						class="fa-solid fa-xmark clear-icon" id="clearSearchFieldBtn"></i>
 					<div class="input-group-append">
 						<button class="btn btn-primary" id="searchBrandBtn" type="button">
 							<i class="fa-solid fa-magnifying-glass"></i>
 						</button>
-						<button class="btn btn-success ml-1 mr-1 add-btn"
-							id="addBrandInfoModal" type="button">
-							<i class="fa-solid fa-plus"></i> Add Brand
-						</button>
-						<button class="btn btn-secondary" id="clearSearchFieldBtn">
-							<i class="fas fa-times"></i>&nbsp;Clear
+
+					</div>
+					<div class="input-group mt-1 justify-content-end">
+						<button class="btn btn-success" id="addBrandInfoModal"
+							type="button">
+							<i class="fa-solid fa-plus"></i> Add brand
 						</button>
 					</div>
 				</div>
+
 				<table class="table table-bordered" id="brandInfoTable">
 					<thead>
 						<tr class="text-center">

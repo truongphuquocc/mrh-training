@@ -19,7 +19,7 @@
 </head>
 <body>
 	<tiles:insertAttribute name="header"/>
-	<div class="container">
+	<div class="container" style="margin-top: 50px">
 		<tiles:insertAttribute name="main-content"/>
 	</div>
 	<tiles:insertAttribute name="footer"/>

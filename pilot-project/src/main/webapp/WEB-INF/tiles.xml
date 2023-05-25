@@ -71,6 +71,7 @@
 		<put-list-attribute name="stylesheets"
 			inherit="true">
 			<add-attribute value="/styles/user.css" />
+			<add-attribute value="/styles/reponsive-user.css" />
 		</put-list-attribute>
 		<put-list-attribute name="javascripts"
 			inherit="true">
@@ -118,6 +119,7 @@
 		<put-list-attribute name="stylesheets"
 			inherit="true">
 			<add-attribute value="/styles/brand.css" />
+			<add-attribute value="/styles/reponsive-admin.css" />
 		</put-list-attribute>
 		<put-list-attribute name="javascripts"
 			inherit="true">
@@ -133,6 +135,7 @@
 		<put-list-attribute name="stylesheets"
 			inherit="true">
 			<add-attribute value="/styles/product.css" />
+			<add-attribute value="/styles/reponsive-admin.css" />
 		</put-list-attribute>
 		<put-list-attribute name="javascripts"
 			inherit="true">

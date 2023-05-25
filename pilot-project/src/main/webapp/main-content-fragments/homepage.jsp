@@ -20,22 +20,6 @@
 						<div class="filter-all">
 							<div>
 								<div class="mb-3">
-									<b>Loại điện thoại</b>
-								</div>
-								<div class="d-flex">
-									<label class="brandtips mr-3"> <input type="checkbox"
-										name="typePhone" value="Apple" /> <span
-										class="brandtips_wrap"> <span class="brandtips_tip">Apple</span>
-									</span>
-									</label> <label class="brandtips"> <input type="checkbox"
-										name="typePhone" value="Android" /> <span
-										class="brandtips_wrap"> <span class="brandtips_tip">Android</span>
-									</span>
-									</label>
-								</div>
-							</div>
-							<div>
-								<div class="mb-3">
 									<b>Giá</b>
 								</div>
 								<div class="grid-dropdown-item">
@@ -186,35 +170,6 @@
 									type="range" max="42000000" min="300000" step="100000"
 									value="42000000" />
 							</div>
-						</div>
-						<div
-							class="filter-button filter-button--total d-flex mb-3 justify-content-center pt-3">
-							<a
-								class="btn btn-outline-danger btn-filter-close text-danger mr-3">Bỏ
-								chọn</a> <a class="btn btn-primary btn-filter-readmore text-white">
-								Xem <b class="total-reloading"></b> kết quả
-							</a>
-						</div>
-					</form>
-				</div>
-			</div>
-			<div class="dropdown">
-				<button class="btn btn-filter dropdown-toggle" type="button"
-					id="dropdownMenuButton4" data-toggle="dropdown"
-					aria-haspopup="true" aria-expanded="false">Loại Điện Thoại
-				</button>
-				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton5">
-					<form action="">
-						<div class="d-flex">
-							<label class="brandtips w-100"> <input type="checkbox"
-								name="typePhone" value="Apple" /> <span class="brandtips_wrap">
-									<span class="brandtips_tip">Apple</span>
-							</span>
-							</label> <label class="brandtips w-100"> <input type="checkbox"
-								name="typePhone" value="Android" /> <span
-								class="brandtips_wrap"> <span class="brandtips_tip">Android</span>
-							</span>
-							</label>
 						</div>
 						<div
 							class="filter-button filter-button--total d-flex mb-3 justify-content-center pt-3">

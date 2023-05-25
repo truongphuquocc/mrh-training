@@ -1,28 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<div class="bg-dark">
-	<div class="container">
-		<nav
-			class="navbar navbar-expand-sm bg-dark navbar-dark d-flex justify-content-between">
-			<ul class="navbar-nav text-white">
-				<li class="nav-item active"><a class="nav-link text-white"
-					href="/brand">Brand</a></li>
-				<li class="nav-item"><a class="nav-link text-white"
-					href="/product">Product</a></li>
-			</ul>
-			<ul class="navbar-nav">
-				<li class="nav-item">
-					<div class="dropdown d-flex align-items-center">
-						<button type="button" class="btn user" data-toggle="dropdown">
-							<span>hi:</span> ${pageContext.request.remoteUser}
-						</button>
-						<div class="dropdown-menu">
-							<a class="dropdown-item" href="/logout">Sign out</a>
-						</div>
-					</div>
-				</li>
-			</ul>
-		</nav>
+<header class="bg-dark">
+	<div class="menu-toggle">
+		<i class="fa fa-bars"></i>
 	</div>
-</div>
+	<a class="navbar-brand text-white logo" href="/brand">Pilot Project</a>
+	<nav class="">
+
+		<ul class="">
+			<li class=""><a class="" href="/brand">Brand</a></li>
+			<li class=""><a class="" href="/product">Product</a></li>
+	
+			<li >
+				<div
+					class="btn-group dropup d-flex justify-content-center h-100 align-items-center">
+					<button type="button" class="btn user dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<span>HI:</span> ${pageContext.request.remoteUser}
+					</button>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="/logout">Sign out</a>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</nav>
+
+</header>

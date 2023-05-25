@@ -51,7 +51,7 @@ var Product = (function() {
 
 			// Render table content
 			$.each(data.productsList, function(key, value) {
-				value.price = value.price.toLocaleString('vi-VN', {style : 'currency', currency : 'VND'})
+				value.price = value.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })
 				_self.$productInfoTableBody.append(
 					_self.templateList.productInfoRowTemplate(value)
 				);
@@ -144,7 +144,7 @@ var Product = (function() {
 							digits: true
 						},
 						brand: {
-							 required: true
+							required: true
 						},
 						quantity: {
 							required: true,
@@ -274,6 +274,10 @@ var Product = (function() {
 				_self.currentPageNumber = 1;
 				_self.searchProducts();
 			});
+
+			$('.menu-toggle').click(function() {
+				$('nav').toggleClass('activve');
+			})
 		}
 		_self.templateList = {
 			productInfoRowTemplate: _.template(TEMPLATE_PRODUCT_INFO_ROW),
